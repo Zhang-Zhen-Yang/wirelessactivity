@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+    <title>十人(房间:729495)</title>
+    <link rel="stylesheet" type="text/css" href="/app/css/bull_vue-10.css">
+    <link rel="stylesheet" type="text/css" href="/app/css/common/alert-1.1.css">
+    <link rel="stylesheet" type="text/css" href="/app/css/bullshop-1.0.css">
+    <link rel="stylesheet" type="text/css" href="/app/css/public10.css">
+ <link rel="stylesheet" href="/app/css/app.css" /> 
+<style>
+  .mainPart{
+    position: relative;
+    height: auto;
+  }
+  .alert .mainPart .id{
+    position: relative;
+  }
+.alert .mainPart .alertText{
+  position: relative;
+}
+
+.alert .mainPart{
+  height: auto;
+}
+ .lishijilu{
+         position: relative;background:url(http://goss.fexteam.com/files/images/common/alert3.png) 0% 0% / 100% 100% no-repeat;width: 82%;margin-left: 3.5vh;color: black;/* margin: auto; */margin-top: 2vh;height: 9vh;line-height: 4vh;font-size: 15px;border-radius: 6px;padding-left: 10px;padding-top: 1vh;
+    }
+@media screen and (max-width: 320px) {
+    .lishijilu{
+         position: relative;background: #a2befc;width: 82%;margin-left: 3.5vh;color: black;/* margin: auto; */margin-top: 2vh;height: 9vh;line-height: 4vh;font-size: 12px;border-radius: 6px;padding-left: 10px;padding-top: 1vh;
+    }
+
+}
+  
+</style>
+<script src="/app/js/jquery3.2.1.min.js" type="text/javascript"></script>
+<script src="/app/js/fastclick.js" type="text/javascript"></script> 
+<script src="/app/js/homepage/home.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/app/js/base64.js"></script>
+<script src="/app/js/dashengapp.js" type="text/javascript"></script>
+<script src="/app/js/game15.js?v=1.44" type="text/javascript"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var xiazhu = 'x1x3x5x8';
+    window.xiazhu = xiazhu.split("x");    
+    $.fn.touch = function(callback) {
+        this.each(function() {
+            if (typeof(callback) == 'function') {
+                if (navigator.userAgent.indexOf('QQBrowser') > 0) {
+                    $(this).on('click', callback);
+                } else {
+                    var time = 0;
+                    this.fn = callback;
+                    $(this).on('touchstart',
+                        function() {
+                            time = (new Date()).getTime();
+                        });
+                    $(this).on('touchend',
+                        function() {
+                            if ((new Date()).getTime() - time <= 300) {
+                                this.fn(this);
+                            }
+                        });
+                }
+            } else {
+                if (navigator.userAgent.indexOf('QQBrowser') > 0) {
+                    $(this).click();
+                } else {
+                    this.fn(this);
+                }
+            }
+        });
+    };
+
+    $.fn.overscroll = function() {
+        this.on('touchstart',
+            function(event) {
+                $(document.body).off('touchmove');
+            });
+        this.on('touchend',
+            function(event) {
+                $(document.body).on('touchmove',
+                    function(evt) {
+                        evt.preventDefault();
+                    });
+            });
+    };
+
+    $.alert = function(msg, fn, style, sec) {
+        style = style || 'success';
+        if (typeof(fn) == 'string') {
+            style = fn;
+        }
+        if (!sec) {
+            if (style == 'error' || style == 'puncherror') {
+                sec = 9;
+            } else {
+                sec = 0;
+            }
+        }
+        var box = $('<div>').addClass('resourceBox ' + style).attr('id', 'alertBox');
+        box.html('<div class="context">' + msg + '</div>');
+        box.appendTo('body');
+        var h = $(window).width() / 360 * 100;
+        box.css({
+            'opacity': 1,
+            'margin-top': -1 * (box.height() + h) / 2
+        });
+        if (sec >= 9) {
+            var alertBoxLay = $('<div>').addClass('alertBoxLay').appendTo('body');
+            $('<a>').attr('href', 'javascript:void(0);').addClass('closed').appendTo(box).text('我知道了');
+            $('#alertBox a.closed, .alertBoxLay').click(function() {
+                box.css({
+                    'opacity': 0,
+                    'margin-top': -1 * (box.height() + h)
+                });
+                alertBoxLay.css('opacity', 0);
+                setTimeout(function() {
+                        box.remove();
+                        alertBoxLay.remove();
+                        if (typeof(fn) == 'function') fn();
+                    },
+                    500);
+            });
+        } else {
+            setTimeout(function() {
+                    box.css({
+                        'opacity': 0,
+                        'margin-top': -1 * (box.height() + h)
+                    });
+                    setTimeout(function() {
+                            box.remove();
+                            if (typeof(fn) == 'function') fn();
+                        },
+                        500);
+                },
+                1000 + sec * 1000);
+        }
+    };
+
+    function alert2(msg, fn, style, sec) {
+        style = style || 'success';
+        if (typeof(fn) == 'string') {
+            style = fn;
+        }
+        if (!sec) {
+            if (style == 'error' || style == 'puncherror') {
+                sec = 9;
+            } else {
+                sec = 0;
+            }
+        }
+        var box = document.createElement('div');
+        box.className = 'resourceBox ' + style;
+        box.id = 'alertBox';
+        box.innerHTML = '<div class="context">' + msg + '</div>';
+        document.getElementsByTagName('body')[0].appendChild(box);
+        var h = $(window).width() / 360 * 100;
+        box.style.opacity = 1;
+        box.style.marginTop = -1 * (box.offsetHeight + h) / 2 + 'px';
+        if (sec >= 9) {
+            var alertBoxLay = document.createElement('div');
+            alertBoxLay.className = 'alertBoxLay';
+            document.getElementsByTagName('body')[0].appendChild(alertBoxLay);
+            var BtnA = document.createElement('a');
+            BtnA.innerText = '我知道了';
+            BtnA.setAttribute('href', 'javascript:void(0);');
+            BtnA.className = 'closed';
+            box.appendChild(BtnA);
+            alertBoxLay.addEventListener('click',
+                function() {
+                    box.style.opacity = 0;
+                    box.style.marginTop = -1 * (box.offsetHeight + h) + 'px';
+                    this.style.opacity = 0;
+                    setTimeout(function() {
+                            document.getElementsByTagName('body')[0].removeChild(box);
+                            document.getElementsByTagName('body')[0].removeChild(alertBoxLay);
+                            if (typeof(fn) == 'function') fn();
+                        },
+                        500);
+                })
+        } else {
+            setTimeout(function() {
+                    box.style.opacity = 0;
+                    box.style.marginTop = -1 * (box.offsetHeight + h) + 'px';
+                    setTimeout(function() {
+                            document.getElementsByTagName('body')[0].removeChild(box);
+                            if (typeof(fn) == 'function') fn();
+                        },
+                        500);
+                },
+                1000 + sec * 1000);
+        }
+    }
+</script>
+
+<script>
+    window.roomID = "12411";
+$(function() {  
+    FastClick.attach(document.body);
+});  
+  var url =window.location.href+'&skin=dasheng';//用户要分享的网址
+  var title  = '十人(房间:729495)';//分享的标题
+  if ('en' != 'cn'){
+    var desc = window.location.href;
+    var shareimg = '';
+  }
+  else{
+    var desc = '模式：明牌抢庄底分：3分规则： 牛牛X4牛九X3牛八X2牛七X2 牌型： 顺子牛（5倍）五花牛（6倍）同花牛（6倍）葫芦牛（7倍）炸弹牛（8倍）五小牛（10倍）  ';//分享的描述信息  
+    var shareimg = 'http://'+window.location.hostname+'/app/img/10ds.png';//分享的图片      
+  }
+    WeChat(url,title,shareimg,desc);
+  </script>
+
+</head>
+ <body>
+
+ <audio onended="mp3playandpause('1miao');" id="1miao" src="/app/video/1miao.mp3"></audio>
+ <!--sex1-->
+ <audio onended="mp3playandpause('mp3niu10');" id="mp3niu10" src="/app/video/bull10/sound_1_60.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu11');" id="mp3niu11" src="/app/video/bull10/sound_1_61.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu12');" id="mp3niu12" src="/app/video/bull10/sound_1_62.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu13');" id="mp3niu13" src="/app/video/bull10/sound_1_63.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu14');" id="mp3niu14" src="/app/video/bull10/sound_1_64.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu15');" id="mp3niu15" src="/app/video/bull10/sound_1_65.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu16');" id="mp3niu16" src="/app/video/bull10/sound_1_66.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu17');" id="mp3niu17" src="/app/video/bull10/sound_1_67.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu18');" id="mp3niu18" src="/app/video/bull10/sound_1_68.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu19');" id="mp3niu19" src="/app/video/bull10/sound_1_69.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu110');" id="mp3niu110" src="/app/video/bull10/sound_1_70.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu111');" id="mp3niu111" src="/app/video/bull10/sound_1_71.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu112');" id="mp3niu112" src="/app/video/bull10/sound_1_72.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu113');" id="mp3niu113" src="/app/video/bull10/sound_1_73.mp3"></audio>
+
+ <!--sex2-->
+ <audio onended="mp3playandpause('mp3niu20');" id="mp3niu20" src="/app/video/bull10/sound_2_60.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu21');" id="mp3niu21" src="/app/video/bull10/sound_2_61.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu22');" id="mp3niu22" src="/app/video/bull10/sound_2_62.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu23');" id="mp3niu23" src="/app/video/bull10/sound_2_63.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu24');" id="mp3niu24" src="/app/video/bull10/sound_2_64.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu25');" id="mp3niu25" src="/app/video/bull10/sound_2_65.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu26');" id="mp3niu26" src="/app/video/bull10/sound_2_66.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu27');" id="mp3niu27" src="/app/video/bull10/sound_2_67.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu28');" id="mp3niu28" src="/app/video/bull10/sound_2_68.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu29');" id="mp3niu29" src="/app/video/bull10/sound_2_69.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu210');" id="mp3niu210" src="/app/video/bull10/sound_2_70.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu211');" id="mp3niu211" src="/app/video/bull10/sound_2_71.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu212');" id="mp3niu212" src="/app/video/bull10/sound_2_72.mp3"></audio>
+ <audio onended="mp3playandpause('mp3niu213');" id="mp3niu213" src="/app/video/bull10/sound_2_73.mp3"></audio>
+
+ <audio onended="mp3playandpause('mp3daojishi');" id="mp3daojishi" src="/app/video/daojishi.mp3"></audio>
+ <audio onended="mp3playandpause('mp3gold');" id="mp3gold" src="/app/video/bull10/gold.mp3"></audio>
+ <audio onended="mp3playandpause('mp3kaiju');" id="mp3kaiju" src="/app/video/kaiju.mp3"></audio>
+ <audio onended="mp3playandpause('mp3xiazhu');" id="mp3xiazhu" src="/app/video/xiazhu.mp3"></audio>
+ <audio onended="mp3playandpause('fapai');" id="fapai" src="/app/video/bull10/tenoxen_sound_101.mp3"></audio>
+
+ <!--sex1-->
+ <audio onended="mp3playandpause('message11');" id="message11" src="/app/video/bull10/sound_1_0.mp3"></audio>
+ <audio onended="mp3playandpause('message12');" id="message12" src="/app/video/bull10/sound_1_1.mp3"></audio>
+ <audio onended="mp3playandpause('message13');" id="message13" src="/app/video/bull10/sound_1_2.mp3"></audio>
+ <audio onended="mp3playandpause('message14');" id="message14" src="/app/video/bull10/sound_1_3.mp3"></audio>
+ <audio onended="mp3playandpause('message15');" id="message15" src="/app/video/bull10/sound_1_4.mp3"></audio>
+ <audio onended="mp3playandpause('message16');" id="message16" src="/app/video/bull10/sound_1_5.mp3"></audio>
+ <audio onended="mp3playandpause('message17');" id="message17" src="/app/video/bull10/sound_1_6.mp3"></audio>
+ <audio onended="mp3playandpause('message18');" id="message18" src="/app/video/bull10/sound_1_7.mp3"></audio>
+ <audio onended="mp3playandpause('message19');" id="message19" src="/app/video/bull10/sound_1_8.mp3"></audio>
+ <audio onended="mp3playandpause('message110');" id="message110" src="/app/video/bull10/sound_1_9.mp3"></audio>
+ <audio onended="mp3playandpause('message111');" id="message111" src="/app/video/bull10/sound_1_10.mp3"></audio>
+ <audio onended="mp3playandpause('message112');" id="message112" src="/app/video/bull10/sound_1_11.mp3"></audio>
+ <audio onended="mp3playandpause('message113');" id="message113" src="/app/video/bull10/sound_1_12.mp3"></audio>
+
+ <!--sex2-->
+ <audio onended="mp3playandpause('message21');" id="message21" src="/app/video/bull10/sound_2_0.mp3"></audio>
+ <audio onended="mp3playandpause('message22');" id="message22" src="/app/video/bull10/sound_2_1.mp3"></audio>
+ <audio onended="mp3playandpause('message23');" id="message23" src="/app/video/bull10/sound_2_2.mp3"></audio>
+ <audio onended="mp3playandpause('message24');" id="message24" src="/app/video/bull10/sound_2_3.mp3"></audio>
+ <audio onended="mp3playandpause('message25');" id="message25" src="/app/video/bull10/sound_2_4.mp3"></audio>
+ <audio onended="mp3playandpause('message26');" id="message26" src="/app/video/bull10/sound_2_5.mp3"></audio>
+ <audio onended="mp3playandpause('message27');" id="message27" src="/app/video/bull10/sound_2_6.mp3"></audio>
+ <audio onended="mp3playandpause('message28');" id="message28" src="/app/video/bull10/sound_2_7.mp3"></audio>
+ <audio onended="mp3playandpause('message29');" id="message29" src="/app/video/bull10/sound_2_8.mp3"></audio>
+ <audio onended="mp3playandpause('message210');" id="message210" src="/app/video/bull10/sound_2_9.mp3"></audio>
+ <audio onended="mp3playandpause('message211');" id="message211" src="/app/video/bull10/sound_2_10.mp3"></audio>
+ <audio onended="mp3playandpause('message212');" id="message212" src="/app/video/bull10/sound_2_11.mp3"></audio>
+ <audio onended="mp3playandpause('message213');" id="message213" src="/app/video/bull10/sound_2_12.mp3"></audio>
+
+ <audio onended="mp3playandpause('background');" id="background" src="/app/video/background.mp3" ></audio>
+ <!--下注抢庄-->
+ <!--sex1-->
+ <audio onended="mp3playandpause('xia11');" id="xia11" src="/app/video/bull10/sound_1x1.mp3"></audio>
+ <audio onended="mp3playandpause('xia12');" id="xia12" src="/app/video/bull10/sound_1x2.mp3"></audio>
+ <audio onended="mp3playandpause('xia13');" id="xia13" src="/app/video/bull10/sound_1x3.mp3"></audio>
+ <audio onended="mp3playandpause('xia14');" id="xia14" src="/app/video/bull10/sound_1x4.mp3"></audio>
+ <audio onended="mp3playandpause('xia15');" id="xia15" src="/app/video/bull10/sound_1x5.mp3"></audio>
+ <audio onended="mp3playandpause('xia18');" id="xia18" src="/app/video/bull10/sound_1x8.mp3"></audio>
+ <audio onended="mp3playandpause('qiangzhuang1');" id="qiangzhuang1" src="/app/video/bull10/sound_1_98.mp3"></audio>
+ <audio onended="mp3playandpause('buqiang1');" id="buqiang1" src="/app/video/bull10/sound_1_99.mp3"></audio>
+
+ <!--sex2-->
+ <audio onended="mp3playandpause('xia21');" id="xia21" src="/app/video/bull10/sound_2x1.mp3"></audio>
+ <audio onended="mp3playandpause('xia22');" id="xia22" src="/app/video/bull10/sound_2x2.mp3"></audio>
+ <audio onended="mp3playandpause('xia23');" id="xia23" src="/app/video/bull10/sound_2x3.mp3"></audio>
+ <audio onended="mp3playandpause('xia24');" id="xia24" src="/app/video/bull10/sound_2x4.mp3"></audio>
+ <audio onended="mp3playandpause('xia25');" id="xia25" src="/app/video/bull10/sound_2x5.mp3"></audio>
+ <audio onended="mp3playandpause('xia28');" id="xia28" src="/app/video/bull10/sound_1x8.mp3"></audio>
+ <audio onended="mp3playandpause('qiangzhuang2');" id="qiangzhuang2" src="/app/video/bull10/sound_2_98.mp3"></audio>
+ <audio onended="mp3playandpause('buqiang2');" id="buqiang2" src="/app/video/bull10/sound_2_99.mp3"></audio>
+<script type="text/javascript">
+    window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext;
+    var context = new (window.AudioContext || window.webkitAudioContext)();
+    var source = [];
+    var audioBuffer = [];
+
+    function mp3play(id){
+        if(id!='background' &&　mp3open==2){
+            return false;
+        }
+        //document.getElementById(id).play();
+        if(!audioBuffer[id]){
+            loadAudioFile(id);
+        }
+        if(source[id]){
+            if(typeof(source[id].stop)=='function'){
+                source[id].stop();
+            }
+            source[id]=null;
+        }
+        if(typeof(WeixinJSBridge) != "undefined") {
+            WeixinJSBridge.invoke('getNetworkType', {},
+                function (e) {
+                    _play();
+                });
+        } else {
+            _play();
+        }
+        function _play() {
+            source[id] = context.createBufferSource();
+            source[id].buffer = audioBuffer[id];
+            if(id=='background'){
+                source[id].loop = true;
+            }
+            else{
+                source[id].loop = false;
+            }
+            source[id].connect(context.destination);
+            source[id].start(0); //立即播放
+        }
+    }
+    function mp3pause(id){
+        //document.getElementById(id).pause();
+        if (source[id]) {
+            source[id].loop = false;
+            source[id].stop(); //立即停止
+            source[id]=null;
+        }
+    }
+
+    function mp3playandpause(id){
+        mp3play(id);
+        mp3pause(id);
+    }
+
+
+    function initSound(arrayBuffer,id) {
+        context.decodeAudioData(arrayBuffer, function(buffer) { //解码成功时的回调函数
+            audioBuffer[id] = buffer;
+            if(bgmp3open==1 && id == 'background') {
+                mp3play('background');
+            }
+        }, function(e) { //解码出错时的回调函数
+            console.log('Error decoding file '+id, e);
+        });
+    }
+
+
+    function loadAudioFile(id) {
+        var url=$('#'+id).attr('src');
+        var xhr = new XMLHttpRequest(); //通过XHR下载音频文件
+        xhr.open('GET', url, true);
+        xhr.responseType = 'arraybuffer';
+        xhr.onload = function(e) { //下载完成
+            initSound(this.response,id);
+        };
+        xhr.send();
+    }
+
+
+    function audioAutoPlay(id){
+        loadAudioFile(id);
+    }
+
+    function muiscready(){
+        audioAutoPlay('mp3niu10');
+        audioAutoPlay('mp3niu11');
+        audioAutoPlay('mp3niu12');
+        audioAutoPlay('mp3niu13');
+        audioAutoPlay('mp3niu14');
+        audioAutoPlay('mp3niu15');
+        audioAutoPlay('mp3niu16');
+        audioAutoPlay('mp3niu17');
+        audioAutoPlay('mp3niu18');
+        audioAutoPlay('mp3niu19');
+        audioAutoPlay('mp3niu110');
+        audioAutoPlay('mp3niu111');
+        audioAutoPlay('mp3niu112');
+        audioAutoPlay('mp3niu113');
+
+        audioAutoPlay('mp3niu20');
+        audioAutoPlay('mp3niu21');
+        audioAutoPlay('mp3niu22');
+        audioAutoPlay('mp3niu23');
+        audioAutoPlay('mp3niu24');
+        audioAutoPlay('mp3niu25');
+        audioAutoPlay('mp3niu26');
+        audioAutoPlay('mp3niu27');
+        audioAutoPlay('mp3niu28');
+        audioAutoPlay('mp3niu29');
+        audioAutoPlay('mp3niu210');
+        audioAutoPlay('mp3niu211');
+        audioAutoPlay('mp3niu212');
+        audioAutoPlay('mp3niu213');
+
+        audioAutoPlay('background');
+
+        audioAutoPlay('mp3daojishi');
+        audioAutoPlay('mp3gold');
+        audioAutoPlay('mp3kaiju');
+        audioAutoPlay('mp3xiazhu');
+
+        audioAutoPlay('fapai');
+
+
+
+        audioAutoPlay('message11');
+        audioAutoPlay('message12');
+        audioAutoPlay('message13');
+        audioAutoPlay('message14');
+        audioAutoPlay('message15');
+        audioAutoPlay('message16');
+        audioAutoPlay('message17');
+        audioAutoPlay('message18');
+        audioAutoPlay('message19');
+        audioAutoPlay('message110');
+        audioAutoPlay('message111');
+        audioAutoPlay('message112');
+        audioAutoPlay('message113');
+
+        audioAutoPlay('message21');
+        audioAutoPlay('message22');
+        audioAutoPlay('message23');
+        audioAutoPlay('message24');
+        audioAutoPlay('message25');
+        audioAutoPlay('message26');
+        audioAutoPlay('message27');
+        audioAutoPlay('message28');
+        audioAutoPlay('message29');
+        audioAutoPlay('message210');
+        audioAutoPlay('message211');
+        audioAutoPlay('message212');
+        audioAutoPlay('message213');
+
+
+        audioAutoPlay('xia11');
+        audioAutoPlay('xia12');
+        audioAutoPlay('xia13');
+        audioAutoPlay('xia14');
+        audioAutoPlay('xia15');
+        audioAutoPlay('xia18');
+        audioAutoPlay('qiangzhuang1');
+        audioAutoPlay('buqiang1');
+
+
+        audioAutoPlay('xia21');
+        audioAutoPlay('xia22');
+        audioAutoPlay('xia23');
+        audioAutoPlay('xia24');
+        audioAutoPlay('xia25');
+        audioAutoPlay('xia28');
+        audioAutoPlay('qiangzhuang2');
+        audioAutoPlay('buqiang2');
+        if(bgmp3open==1){
+            setTimeout(function(){
+                //mp3pause('background');
+                //mp3play('background');
+            },2000);
+            mp3open=1;
+            $("#sound-open").css("display", "block");
+            $("#sound-close").css("display", "none");
+        }
+        if(bgmp3open==2){
+            mp3pause('background');
+            mp3open=2;
+            $("#sound-open").css("display", "none");
+            $("#sound-close").css("display", "block");
+        }
+        $("#sound-close").click(function (e) {
+            $(this).css('display', "none");
+            $("#sound-open").css("display", "block");
+            mp3play('background');
+            bgmp3open=1;
+            mp3open=1;
+            localStorage.bgmp3open=bgmp3open;
+        });
+        $("#sound-open").click(function (e) {
+            $(this).css('display', "none");
+            $("#sound-close").css("display", "block");
+            mp3pause('background');
+            bgmp3open=2;
+            mp3open=2;
+            localStorage.bgmp3open=bgmp3open;
+        });
+    }
+    $(function () {
+        muiscready();
+    });
+</script>
+<div id="loadings">
+    <div class="mask"></div>
+    <div class="circular"></div>
+    <div class="rotate"></div>
+</div>
+ <div id="networkReconnect" style="position: fixed; width:2.88rem; line-height:.2rem; font-size:.1rem; left:.36rem; text-align: center; bottom:45%; background: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.5), rgba(0,0,0,0.5), rgba(0,0,0,0.5), rgba(0,0,0,0)); background: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.5), rgba(0,0,0,0.5), rgba(0,0,0,0.5), rgba(0,0,0,0)); background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.5), rgba(0,0,0,0.5), rgba(0,0,0,0.5), rgba(0,0,0,0)); color:#fff; display:none; z-index:9999;">
+     您的网络已断开，我们正在尝试重连...
+ </div>
+
+ <img src="/app/bg.png" style="display: none">
+<img src="/app/dyj.png" style="display: none">
+    <div id="overtime" style="display: none">
+    <canvas id="myCanvas" width="696" height="1224" style="display: none"></canvas>
+    </div>
+
+
+
+
+   <div class="roomCard">
+    <img src="/app/img/bull10/room-card1.png" />
+    <div class="num">
+     <div class='jiurenniuniu-fk'></div> 
+     <div class='jiurenniuniu-fk-1' id="fknum">0</div>
+    </div>
+   </div>
+
+   <img src="/app/img/bull10/niuniu-top-bg1.png" alt="" class="tabBottom" />
+   <div class="round jiurenniuniu-round" style="" id="jsxx">
+    9&nbsp;/&nbsp;12局
+   </div> 
+
+   <img src="/app/img/bull10/return-index.png" class="return jiurenniuniu-return-index"  onclick="returnIndex()" />
+   <img src="/app/img/bull10/sidelines.png" id="guanzhan_btn" class="return jiurenniuniu-return" onclick="GuanzhanList()" style="display: none;"/>
+   <img src="/app/img/bull10/game-rules.png" class="bGameRule jiurenniuniu-bGameRule"/>
+
+   <div class="myCardTypeBG"></div> 
+   <div class="myCardType" style="overflow: hidden;">
+    <div id="df" style="
+    overflow: hidden;
+">
+     底分：3分    </div>
+   </div> 
+   <div class="bottomMessage">
+    <img src="/app/img/bull10/game-chat01.png" class="jiurenniuniu-bottomMessage-img" />
+   </div> 
+   <div class="bottomHistory jiurenniuniu-bottomHistory">
+       <img class='jiurenniuniu-bottomHistory-img' id="sound-open" src="/app/img/bull10/game-music01.png" style="display: none;"/>
+       <img class='jiurenniuniu-bottomHistory-img' id="sound-close" src="/app/img/bull10/game-music02.png" style="display: none;"/>
+   </div>
+
+  <div id="messageSay">
+  </div>
+  <div id="tishi" class="alert" style="display: none;"></div> 	
+  <div id="vaudioRoom" class="audioRoom" style="display: none;"></div> 
+  <div id="vroomRule" class="createRoom" style="display: none;"></div>
+  <div id='message' class="message" style="
+    display: none;overflow: hidden;
+"></div> 
+
+   <div id="table" class="table">
+    <img src="/app/img/bull10/bg/bg2.jpg" class="tableBack" />
+   </div>
+   <div class="cardDeal" id="userfp"></div>
+
+
+     <div class="myCards" style="display: none;"></div>
+
+
+  <div class="myCards" style="display: none;"></div>
+
+ <div class="myCards" style="display: none;"></div>
+
+
+
+    <div class="cardOver" style="position: absolute; width: 100%; height: 100%; overflow: hidden;"></div>
+
+       <div class="member-list-vacancy">
+           <div class="vacancy vacancy1">
+               空位
+           </div>
+           <div class="vacancy vacancy2">
+               空位
+           </div>
+           <div class="vacancy vacancy3">
+               空位
+           </div>
+           <div class="vacancy vacancy4">
+               空位
+           </div>
+           <div class="vacancy vacancy5">
+               空位
+           </div>
+           <div class="vacancy vacancy6">
+               空位
+           </div>
+           <div class="vacancy vacancy7">
+               空位
+           </div>
+           <div class="vacancy vacancy8">
+               空位
+           </div>
+           <div class="vacancy vacancy9">
+               空位
+           </div>
+           <div class="vacancy vacancy10">
+               空位
+           </div>
+       </div>
+
+    <div id="memberTimesText"></div> 
+    <div id="memberTimesText2"></div> 
+    
+    <div id="memberRobText"></div>
+    <div id="memberFreeRobText"></div>
+    <div id="memberBull"></div>
+    
+
+    <div id="memberScoreText1"></div>
+    
+    <div id="member"></div> 
+
+
+    <div id="jinbi"></div> 
+
+
+    <div>
+      <div class="triangle"></div>
+    </div>
+
+       <div class="rules-mask">
+           <div class="content">
+               <div class="niuniu-rules">
+                    <div class="rules-title">
+                        规则
+                    </div>                
+                   <div class="flex-cont" data-pos="0">
+                       <div class="name">
+                           模式：
+                       </div>
+                       <div class="flex-item">明牌抢庄</div>
+                   </div>
+                   <div class="flex-cont" data-pos="1">
+                       <div class="name">
+                           底分：
+                       </div>
+                       <div class="flex-item">3分</div>
+                   </div>
+                   <div class="flex-cont" data-pos="2">
+                       <div class="name">
+                           规则：
+                       </div>
+                       <div class="flex-item">牛牛X4牛九X3牛八X2牛七X2</div>
+                   </div>
+
+                   
+                                      <div class="flex-cont rules-item" data-pos="3">
+                       <div class="name">
+                           牌型：
+                       </div>
+                       <div class="flex-item">
+                           <a>顺子牛（5倍）</a>
+                                   <a>五花牛（6倍）</a>
+                                                                      <br/>
+                                   <a>同花牛（6倍）</a>
+                                   <a>葫芦牛（7倍）</a>
+                                                                      <br/>
+                                   <a>炸弹牛（8倍）</a>
+                                   <a>五小牛（10倍）</a>
+                                                                      <br/>
+                                                          </div>
+                   </div>
+                   
+           
+                   <div class="flex-cont" data-pos="4">
+                       <div class="name">
+                           局数：
+                       </div>
+                       <div class="flex-item">12局X2房卡 </div>
+                   </div>
+
+                                   <div class="flex-cont" data-pos="5">
+                        <div class="name">
+                            下注：
+                        </div>
+                        <div class="flex-item">x1x3x5x8</div>
+                </div>                
+                <div class="rules-title">
+                    玩法
+                </div>
+                <div class="rules-text">
+                    <p>一、通比开船</p>
+                    <p>1、根据从大到小的牌型开始派彩；玩家胜负分数为：下注倍数X 牌型倍数 X 底分。</p>
+                    <p>2、最小牌型的玩家分数先支付给最大牌型的玩家，如果牌型最小玩家分数不足支付最大玩家应得的分数时，由倒数第二小牌型的玩家继续支付给最大牌型的玩家，以此类推，直到最大牌型玩家获得应得的分数；</p>
+                    <p>4、如果牌型最小的玩家分数刚好足够支付最大玩家应得的分数，由倒数第二小牌型的玩家继续支付给第二大牌型玩家，以此类推，直至所有小牌型玩家支付完所有分数；</p>
+                    <p>二、固定坐庄</p>
+                    <p>1、抢庄规则：游戏开始后，玩家自行选择该房间的分数上限。选定的分数越高，越容易做庄家；如果多个玩家选中的分数相同，则随机一个庄家，此时该玩家为固定庄家，直至游戏结束。（选择房间分数与赔率、倍数、下注分数无关）；</p>
+                    <p>2、不抢规则：如果玩家选择“不抢”或者无选中操作，倒数结束后，随机一个庄家；下一局游戏继续“抢庄”，以此类推，直到游戏结束；</p>
+                    <p>三、牛牛上庄</p>
+                    <p>1、第一轮随机选定庄家，后续局数玩家谁的牌型为特殊牌型（包括牛牛），则下一局坐庄，多人同时获得特殊牌型，则选择最大者下一局坐庄；如果没有玩家获得特殊牌型，第一轮选定的庄家将一直坐庄；</p>
+                    <p>四、通用规则</p>
+                    <p>1、牌面数值：10，J，Q，K都为10，其他按牌面数字计算。</p>
+                    <p>2、取其中三张牌数值相加，如果和是10的倍数，则剩余2张牌相加之和取个位数即为牛X， 如：4/9/8/7/K，(4+7+9=20)(K+8=18)，此牌型为牛八。如果剩余2张牌相加之和也是10的倍数即为牛.牛的牌型。如4/9/7/J/Q，J+Q=20，则为牛.牛。</p>
+                    <p>3、五小牛：所有牌均小于5，点数总和小于等于10；炸弹牛：有四张相同的牌；五花牛：5张牌均为JQK。顺子牛：牌值按顺序递增或递减；同花牛：所有牌花色相同；葫芦牛：三张相同牌值的牌带两张相同牌值的牌；</p>
+                    <p>4、5张牌中任意3张牌之和都不能为10的倍数（特殊牌型除外，如葫芦牛），则判定为没牛。</p>
+                    <p>5、牌型大小顺序为：五小牛&gt;炸弹牛&gt;葫芦牛&gt;同花牛&gt;五花牛&gt;顺子牛&gt;牛.牛&gt;牛九&gt;牛八&gt;牛七&gt;牛六&gt;牛五&gt;牛四&gt;牛三&gt;牛二&gt;牛一&gt;没牛。</p>
+                    <p>6、如果牛数相同，则比较五张手牌中最大的那张牌的大小，顺序为：K&gt;Q&gt;J......&gt;2&gt;A。</p>
+                    <p>7、如果牛数相同，最大那张牌的数字也相同，则比较花色，顺序为：黑桃&gt;红桃&gt;梅花&gt;方块（同花牛，先比花色再比最大单牌）。</p>
+                    <p>五、癞子牛牛</p>
+                    <p>1、癞子牛牛是基于经典牛牛的玩法，加入大小王并将大小王当成癞子的新款牛牛游戏。</p>
+                    <p>2、癞子牛牛自带有金牛（10倍）、天牛（4倍）、地牛（4倍）。地牛：任意三张手牌（除大王）之和为10的倍数，加上小王；天牛：任意三张手牌（除小王）之和为10的倍数，加上大王；金牛：任意三张牌之和为10的倍数，再加大小王。</p>
+                    <p>3、牌型大小顺序为：金牛&gt;五小牛&gt;炸弹牛&gt;葫芦牛&gt;同花牛&gt;五花牛&gt;顺子牛&gt;天牛&gt;地牛&gt;牛.牛&gt;牛九&gt;牛八&gt;牛七&gt;牛六&gt;牛五&gt;牛四&gt;牛三&gt;牛二&gt;牛一&gt;没牛。</p>
+                    <p>4、牛数相同：存在癞子的一方较大，都无癞子则先比较最大单牌大小（同花牛除外），若最大单牌大小相等则比较花色。顺序为：大王&gt;小王&gt;K&gt;Q&gt;J......&gt;2&gt;A。</p>
+                </div>                   
+               </div>
+           </div>
+           <div class="close"></div>
+       </div>
+
+    <div id="divRobBankerText" class='jiurenniuniu-qiangzhuang'></div> 
+    <div id="" class="clock jiurenniuniu-clock">
+     <img src="/app/img/bull10/game-timg.png" class='jiurenniuniu-memberCoin' />
+     <p id='djs' class='jiurenniuniu-clock1'> 10 </p>
+    </div> 
+<!--    <div class="div_cuo" id="move-box" style="display:none;">
+        <img src="/app/img/bull10/card/card-bg.png" />
+</div>
+<div class="div_cuo_card" id="div_cuo_card">
+        <div class="myCards myCards_v2" style="height:143px;bottom:auto;text-align:center;">
+               <div id="true_card"></div>
+       </div>
+</div> -->
+   
+    <div id="operationButton">
+    </div>
+
+    <div class='gongg' style="display: none">
+    </div>
+<style>
+
+</style>
+   
+ <script>
+    function joinroom(){
+      $("#joinUser").remove();
+      token='abbaa4c0cb3e50067fadfdce9009b7a1';
+      room='12411';
+      var dkxx='6495';
+     load('show');
+     if(dkxx){
+      connect(dkxx);
+    }
+    else{
+      load('hide');
+      prompt('服务器没开启,请稍后再试');
+      setTimeout("$('body').hide()",3000);
+    }
+    }
+  </script>
+<script>
+  joinroom();
+</script>
+<div class="chat-list-mask"></div>
+<div class="chat-list">
+     <ul class="chat-list-ul">
+         <li data-item="0">快点吧，我等到花儿也谢了</li>
+         <li data-item="1">我出去叫人</li>
+         <li data-item="2">你的牌好靓哇</li>
+         <li data-item="3">我当年横扫澳门九条街</li>
+         <li data-item="4">算你牛逼</li>
+         <li data-item="5">别吹牛逼，有本事干到底</li>
+         <li data-item="6">输得裤衩都没了</li>
+         <li data-item="7">我给你们送温暖了</li>
+         <li data-item="8">谢谢老板</li>
+         <li data-item="9">我来啦，让你们久等了</li>
+         <li data-item="10">我出去一下，马上回来，等我哦</li>
+         <li data-item="11">怎么断线了，网络太差了</li>
+         <li data-item="12">搏一搏，单车变摩托</li>
+     </ul>
+</div>
+
+
+<script>
+
+
+function printCallStack() {
+var i = 0;
+var fun = arguments.callee;
+do {
+    fun = fun.arguments.callee.caller;
+    console.log(++i + ': ' + fun);
+} while (fun);
+}
+
+function over(msg){
+    //printCallStack();
+    alert2(msg, function () {
+        wx.closeWindow();
+    });
+}
+var overscroll = function(el) {
+  el.addEventListener('touchstart', function() {
+    var top = el.scrollTop
+      , totalScroll = el.scrollHeight
+      , currentScroll = top + el.offsetHeight;
+    //If we're at the top or the bottom of the containers
+    //scroll, push up or down one pixel.
+    //
+    //this prevents the scroll from "passing through" to
+    //the body.
+    if(top === 0) {
+      el.scrollTop = 1;
+    } else if(currentScroll === totalScroll) {
+      el.scrollTop = top - 1;
+    }
+  });
+  el.addEventListener('touchmove', function(evt) {
+    //if the content is actually scrollable, i.e. the content is long enough
+    //that scrolling can occur
+    if(el.offsetHeight < el.scrollHeight)
+      evt._isScroller = true;
+  });
+}
+document.body.addEventListener('touchmove', function(evt) {
+  //In this case, the default behavior is scrolling the body, which
+  //would result in an overflow.  Since we don't want that, we preventDefault.
+  if(!evt._isScroller) {
+    evt.preventDefault();
+  }
+});
+
+        
+
+// document.addEventListener("WeixinJSBridgeReady", function () {
+//           mp3play('background');
+// }, false);
+// document.addEventListener('YixinJSBridgeReady', function() {
+//           mp3play('background');      
+// }, false);
+
+
+
+
+function onBridgeReady(){
+ WeixinJSBridge.invoke('getNetworkType',{},
+    function(e){
+        //WeixinJSBridge.log(e.err_msg);
+         mp3play('1miao');  
+      });
+}
+
+if (typeof WeixinJSBridge == "undefined"){
+    if( document.addEventListener ){
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    }else if (document.attachEvent){
+        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    }
+}else{
+    onBridgeReady();
+}
+
+
+</script>
+ <script type="text/javascript">
+     function returnIndex(text) {
+         var text = text || '确认返回主页？';
+         var code = '<div class="window-masks return-index" id="returnIndex">';
+         code += '<div class="border-opacity">';
+         code += '<div class="container">';
+         code += '<i class="mask-icon mask-top"></i><i class="mask-icon mask-right"></i><i class="mask-icon mask-bottom"></i><i class="mask-icon mask-left"></i>';
+         code += '<div class="main">' + text + '</div>';
+         code += '<div class="button">';
+         code += '<div class="sure" id="returnIndexBtn">返回首页</div>';
+         code += '<div class="cancel" id="cancelBtn">取消</div>';
+         code += '</div>';
+         code += '</div>';
+         code += '</div>';
+         code += '</div>';
+         document.body.insertAdjacentHTML("beforeend", code);
+         document.getElementById('returnIndexBtn').onclick = function() {
+             location.href = '/';
+         };
+         document.getElementById('cancelBtn').onclick = function() {
+             document.body.removeChild(document.getElementById('returnIndex'));
+         };
+         document.getElementById('returnIndex').onclick = function() {
+             document.body.removeChild(document.getElementById('returnIndex'));
+         };
+     }
+
+     function GuanzhanList() {
+        $('.sidelines-mask').css('display', 'block');
+        $('.sidelines-content').css('top', '0');
+     }
+
+     function Agreement() {
+         var code = '<div class="window-masks agreement" id="agreement">';
+         code += '<div class="border-opacity">';
+         code += '<div class="container">';
+         code += '    <i class="mask-icon mask-top"></i><i class="mask-icon mask-right"></i><i class="mask-icon mask-bottom"></i><i class="mask-icon mask-left"></i>';
+         code += '    <div class="title"></div>';
+         code += '    <div class="main">';
+         code += '       <p>本游戏仅供娱乐， 严禁赌博，如发现有赌博行为，将封停账号并向公安机关举报。</p>';
+         code += '       <p>游戏中使用到的房卡为游戏道具，不具有任何财产性功能，本公司对于用户所拥有的房卡不提供任何形式官方回购、直接或变相兑换现金或实物等服务或相关功能。</p>';
+         code += '       <p>游戏仅供休闲娱乐使用，游戏中出现问题请联系客服。</p>';
+         code += '    </div>';
+         code += '<div class="sure" id="agreementSure">确定</div>';
+         code += '    </div>';
+         code += '    </div>';
+         code += '</div>';
+         document.getElementsByTagName('body')[0].insertAdjacentHTML("beforeend", code);
+         document.getElementById('agreementSure').onclick = function() {
+             document.getElementsByTagName('body')[0].removeChild(document.getElementById('agreement'));
+         };
+         document.getElementById('agreement').onclick = function() {
+             document.body.removeChild(document.getElementById('agreement'));
+         };
+     }
+
+     $(function () {
+         overscroll(document.querySelector('.chat-list-ul'));
+
+         $('.bottomMessage').touch(function() {
+             $('.chat-list-mask').show();
+             $('.chat-list').show();
+         });
+         $('.chat-list-mask').touch(function() {
+             $('.chat-list-mask').hide();
+             $('.chat-list').hide();
+         });
+         $('.chat-list li').click(function() {
+             $('.chat-list-mask').hide();
+             $('.chat-list').hide();
+             var chat = parseInt($(this).attr('data-item'));
+             sendmsg($(this).text(),'message'+indexsex[index]+(chat+1));
+         });
+     });
+ </script>
+
+ <script type="text/javascript">
+     $('.jiurenniuniu-bGameRule').click(function() {
+         $('.rules-mask').show();
+     });
+     $('.rules-mask').click(function() {
+         $('.rules-mask').hide();
+     });
+     $('.rules-mask .close').click(function() {
+         $('.rules-mask').hide();
+     });    
+     $(function () {
+         $("#loadings").remove();
+     });
+ </script>
+
+<div class="sidelines-mask" style="display: none;" onclick="click_sideclose()"></div>
+
+<div class="sidelines-content" style="top: -3.5em;">
+    <div class="sidelines-num">观战人数：10</div>
+    <div class="sidelines-list">
+    </div>
+    <div class="sidelines-btn" onclick="click_sidebtn()">
+        <div class="sidelines-join-game"></div>
+        <div class="sidelines-join-game-text"></div>
+    </div>
+    <div class="sidelines-close" onclick="click_sideclose()"></div>
+</div>
+
+<script type="text/javascript">
+function click_sideclose(){
+    $('.sidelines-mask').css('display', 'none');
+    $('.sidelines-content').css('top', '-3.5em');
+}
+
+function click_sidebtn(){
+    var txt = $('.sidelines-join-game-text').text();
+    room='12411';
+    if (txt == '加入游戏')
+    {
+        if(!token){
+            token=localStorage.token;
+        }
+        send('joinroom',{room:room});
+        $('.bottomMessage').show();
+    }
+    else
+    {
+        send('enterwatch', {room:room});
+        $('.bottomMessage').hide();
+    }
+}
+
+function beginenterwatch(data){
+    room='12411';
+    send('enterwatch', {room:room});
+    $('.chat').hide();
+    GuanzhanList();
+}
+
+var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+$('.sidelines-content').css('font-size', 100 * (this.width / 360) + 'px');
+$('.niuniu-rules').css('height', 0.5 * height + 'px');
+</script>
+
+ </body>
+</html>

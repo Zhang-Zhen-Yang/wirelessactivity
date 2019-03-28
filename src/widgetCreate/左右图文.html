@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>左右图文</title>
+	<style>
+		.action-wrap{
+			padding: 5px;
+		}
+		.action-wrap-sub{
+			padding: 0;
+		}
+		.action-wrap-poster{
+			padding: 0;
+		}
+	</style>
+
+	<style>
+
+	</style>
+</head>
+<body>
+	<div id="app">
+		<wireless
+			:data="data"
+			:activeIndex="activeIndex"
+		/>
+	</div>
+	
+	<!--模板数据-->
+	<script type="tempate" id="data-block" style="display:none">
+			<!--
+				1.data:
+					{
+						"type": "oneRow",
+						"is": "oneRowC83BBFEFE2A000011FD2C5DFF5461A9F",
+						"show_prev_price": true,
+						"show_title": true,
+						title: 'dddd',
+						link: 'dddd',
+						// 宝贝列表
+						"list": [{
+							"title": "矮小个子155cm女装衬衫女长袖职业修身上衣韩版气质格子拼接",
+							"pic_url": "https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEXq4lRzxZzC-105227988.jpg",
+							"price": "109.00",
+							"prev_price": "109.00",
+							"num_iid": 578026982963,
+							"num": 0
+						}, {
+							"title": "职业装韩版上衣秋装2018衬衫女长袖气质工作服女上班衣服女装",
+							"pic_url": "https://img.alicdn.com/bao/uploaded/i2/105227988/O1CN0128sYEYxPKF2oXxz-105227988.jpg",
+							"price": "91.00",
+							"prev_price": "91.00",
+							"num_iid": 577902709302,
+							"num": 0
+						}]
+					}
+			-->
+			<div class="one-row-horizontal-wrap">
+				<widget-header :title="data.title" :link="data.link"></widget-header>
+				<empty-layout v-if="data.list.length == 0" />
+				<goods-link v-for="item,index in data.list" :numIid="item.num_iid" :key="index">
+					<div class="" style="background-color: white;margin-bottom: 2px;">
+						<table>
+							<tr>
+								<td v-if="index % 2 == 1" class="title-block" height="35%">
+									<span v-if="data.show_title" style="color: orange;font-size: 14px;">
+										{{ item.title }}
+									</span>
+								</td>
+								<td width="50%" rowspan="3">
+									<img :src="item.pic_url" alt="" style="width: 100%;vertical-align: middle">
+								</td>
+								<td v-if="index % 2 == 0" class="title-block" height="35%">
+									<span v-if="data.show_title" style="color:orange;font-size: 14px;">
+										{{ item.title }}
+									</span>
+								</td>
+					
+							</tr>
+							<!--宝贝图片-->
+							<tr>
+								<td>
+									<span>
+										{{ item.price|pri }} 
+									</span>
+									<span
+										v-if="data.show_prev_price"
+										style="font-size: 12px;text-decoration: line-through;margin-left: 5px;"
+									>
+										¥{{ item.prev_price|pri }} 
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td> 
+									<div style="background-color:orange;color:white;padding: 5px 0;text-align:center;">
+										立即购买
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</goods-link>
+			</div>
+
+	</script>
+
+
+	<script>
+		var template = document.getElementById('data-block').innerHTML;
+		console.log(template);
+		document.getElementById('data-block').innerHTML = '';
+	</script>
+
+	<script src="http://cdn.staticfile.org/vue/2.5.17/vue.js"></script>
+	<script src="http://localhost:8080/dist/widget.js"></script>
+	<!--<script src="./widget.js"></script>-->
+	<script>
+		var data = {
+			"global": {
+				"title": "左右图文",
+				"bgBody": "rgba(168,46,46,1)",
+				"bgBlock": "white",
+				"bgTheme": "rgba(76,20,124,1)",
+				"bgLight": "white",
+				"colorTheme": "rgba(146,29,29,1)",
+				"colorLight": "white",
+				"colorBorder": "rgba(128,55,88,1)",
+				"colorTitle": "rgba(233,49,82,1)",
+				"style": "dddddd"
+			},
+			"style": "",
+			"widgets": [{
+				"name": "oneRowC83BBFEFE2A000011FD2C5DFF5461A9F",
+				"template": template,
+				"style": ".oneRowC83BBFEFE2A000011FD2C5DFF5461A9F{}",
+				"p": false,
+				"image": "http://imgs.aixifan.com/o_1ct5mhbf315r61rjh16b6qlo11bm2l.jpg",
+				"id": 17,
+				"type": "oneRow"
+			}],
+			"list": [{
+				"type": "oneRow",
+				"is": "oneRowC83BBFEFE2A000011FD2C5DFF5461A9F",
+				"show_prev_price": true,
+				"show_title": true,
+				title: 'dddd',
+				link: 'dddd',
+				"list": [{
+					"title": "矮小个子155cm女装衬衫女长袖职业修身上衣韩版气质格子拼接",
+					"pic_url": "https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEXq4lRzxZzC-105227988.jpg",
+					"price": "109.00",
+					"prev_price": "109.00",
+					"num_iid": 578026982963,
+					"num": 0
+				}, {
+					"title": "职业装韩版上衣秋装2018衬衫女长袖气质工作服女上班衣服女装",
+					"pic_url": "https://img.alicdn.com/bao/uploaded/i2/105227988/O1CN0128sYEYxPKF2oXxz-105227988.jpg",
+					"price": "91.00",
+					"prev_price": "91.00",
+					"num_iid": 577902709302,
+					"num": 0
+				}]
+			}]
+		}
+	</script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				activeIndex: -1,
+				data: data,
+			},
+			methods: {
+				
+			},
+			mounted: function(){
+				
+			}
+		})
+		
+	</script>
+</body>
+</html>

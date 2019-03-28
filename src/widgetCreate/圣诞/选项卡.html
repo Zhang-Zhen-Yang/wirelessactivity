@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>选项卡</title>
+	<style>
+		.action-wrap{
+			padding: 5px;
+			background-image: url(./src/tabbg.jpg);
+		}
+		.action-wrap-sub{
+			padding: 0;
+		}
+		.action-wrap-poster{
+			padding: 0;
+		}
+	</style>
+
+	<style>
+
+		.tab-test .tab-active .tab-item-title{
+			background-color: #d41715;
+			color: white;
+		}
+		.tab-test .tab-header td{
+			text-align: center;
+			padding: 5px;
+		}
+		.tab-test .tab-header td>div{
+			line-height: 2em;
+			background-size: 100% 100%;
+			padding: 3px;
+		}
+		.tab-test .tab-header td.tabNum2>div{
+			background-image: url(./src/tabNum2.png);
+		}
+		.tab-test .tab-header td.tabNum3>div{
+			background-image: url(./src/tabNum3.png);
+		}
+		.tab-test .tab-header td.tabNum4>div{
+			background-image: url(./src/tabNum4.png);
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<wireless
+			:data="data"
+			:activeIndex="activeIndex"
+		/>
+	</div>
+	<div style="display: none;">
+		
+	</div>
+	<!--模板数据-->
+	<script type="tempate" id="data-block" style="display:none">
+			<!--
+				基本上只能改 tab-temp 里面的东西
+
+				提供的数据：
+				1.data: 
+				{
+					type: 'tab',
+					is: 'tabtest',
+					activeIndex: 0, // 当前点击的索引值
+					list: [
+						{
+							title: '分类一', // 每个选项的标题
+							children: [],
+						},
+						{
+							title: '分类二',
+							children: [],
+						},
+					]
+				}
+			-->
+			<div class="tab-test">
+				<tab-temp :data="data">
+					<table cellspacing="0" cellpadding="0" class="tab-header" style="width:100%;">
+						<tr>
+							<td v-for="item,index in data.list" :class="{'tab-active': data.activeIndex == index, 'tabNum2': data.list.length == 2, 'tabNum3': data.list.length == 3, 'tabNum4': data.list.length == 4}" @click="data.activeIndex=index">
+								<div>
+									<div class="tab-item-title">
+										{{ item.title }}
+									</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</tab-temp>
+			</div>
+	</script>
+
+
+	<script>
+		var template = document.getElementById('data-block').innerHTML;
+		console.log(template);
+		document.getElementById('data-block').innerHTML = '';
+	</script>
+
+	<script src="http://cdn.staticfile.org/vue/2.5.17/vue.js"></script>
+	<script src="http://localhost:8080/dist/widget.js"></script>
+	<!--<script src="./widget.js"></script>-->
+	<script>
+		var data = {
+			"global": {
+				"title": "选项卡",
+				"bgBody": "rgba(168,46,46,1)",
+				"bgBlock": "white",
+				"bgTheme": "rgba(76,20,124,1)",
+				"bgLight": "white",
+				"colorTheme": "rgba(146,29,29,1)",
+				"colorLight": "white",
+				"colorBorder": "rgba(128,55,88,1)",
+				"colorTitle": "rgba(233,49,82,1)",
+				"style": "dddddd"
+			},
+			"style": "",
+			"widgets": [{
+				"name": "tabtest",
+				"template": template,
+				"style": ".tabtest{}",
+				"p": false,
+				"image": "http://imgs.aixifan.com/o_1ct5mhbf315r61rjh16b6qlo11bm2l.jpg",
+				"id": 17,
+				"type": "tab"
+			}],
+			"list": [
+				{
+					type: 'tab',
+					is: 'tabtest',
+					activeIndex: 0,
+					list: [
+						{
+							title: '分类一',
+							children: [],
+						},
+						{
+							title: '分类二',
+							children: [],
+						},
+						/*{
+							title: '分类三',
+							children: [],
+						},
+						{
+							title: '分类四',
+							children: [],
+						},*/
+					]
+				}
+			]
+		}
+	</script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				activeIndex: -1,
+				data: data,
+			},
+			methods: {
+				
+			},
+			mounted: function(){
+				
+			}
+		})
+		
+	</script>
+</body>
+</html>

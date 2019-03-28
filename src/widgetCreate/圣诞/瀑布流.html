@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>瀑布流</title>
+	<style>
+		.action-wrap{
+			padding: 5px;
+			background-image: url(./src/tabbg.jpg);
+		}
+		.action-wrap-sub{
+			padding: 0;
+		}
+		.action-wrap-poster{
+			padding: 0;
+		}
+	</style>
+
+	<style>
+
+
+
+	</style>
+</head>
+<body>
+	<div id="app">
+		<wireless
+			:data="data"
+			:activeIndex="activeIndex"
+		/>
+	</div>
+	
+	<!--模板数据-->
+	<script type="tempate" id="data-block" style="display:none">
+		<!--
+			提供的数据
+			1.data
+				{
+					is: "waterfallTest",
+					// 左侧顶部
+					leftTop: {
+						link: "", // 点击跳转的链接
+						pic_url: "https://img.alicdn.com/imgextra/i1/105227988/O1CN0128sYEyAW4X6EQWf-105227988.png",// 图片
+					},
+					// 右侧底部
+					rightBottom: {
+						link: "", // 点击跳转的链接
+						pic_url: "https://img.alicdn.com/imgextra/i1/105227988/O1CN0128sYEyAW4X6EQWf-105227988.png", // 图片
+					},
+					show_prev_price: true, // 是否显示原价
+					show_title: true, // 是否显示宝贝名
+					title: '',
+					type: 'waterfall',
+					// 宝贝列表
+					list: [
+						{
+							num:0,
+							num_iid:578027018580,
+							pic_url:"https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEYNuBLbyuds-105227988.jpg",
+							prev_price:"69.00",
+							price:"69.00",
+							title: "1韩版夏季半身裙一步裙西装裙工装裙大码职业短裙性感包臀裙a字裙",
+						},
+						{
+							num:0,
+							num_iid:578027018580,
+							pic_url:"https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEYNuBLbyuds-105227988.jpg",
+							prev_price:"69.00",
+							price:"69.00",
+							title: "1韩版夏季半身裙一步裙西装裙工装裙大码职业短裙性感包臀裙a字裙",
+						},
+						{
+							num:0,
+							num_iid:578027018580,
+							pic_url:"https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEYNuBLbyuds-105227988.jpg",
+							prev_price:"69.00",
+							price:"69.00",
+							title: "1韩版夏季半身裙一步裙西装裙工装裙大码职业短裙性感包臀裙a字裙",
+						},
+						{
+							num:0,
+							num_iid:578027018580,
+							pic_url:"https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEYNuBLbyuds-105227988.jpg",
+							prev_price:"69.00",
+							price:"69.00",
+							title: "1韩版夏季半身裙一步裙西装裙工装裙大码职业短裙性感包臀裙a字裙",
+						},
+						{
+							num:0,
+							num_iid:578027018580,
+							pic_url:"https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEYNuBLbyuds-105227988.jpg",
+							prev_price:"69.00",
+							price:"69.00",
+							title: "1韩版夏季半身裙一步裙西装裙工装裙大码职业短裙性感包臀裙a字裙",
+						},
+						{
+							num:0,
+							num_iid:578027018580,
+							pic_url:"https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEYNuBLbyuds-105227988.jpg",
+							prev_price:"69.00",
+							price:"69.00",
+							title: "1韩版夏季半身裙一步裙西装裙工装裙大码职业短裙性感包臀裙a字裙",
+						},
+					]
+				}
+
+
+
+		-->
+		<div class="waterfall">
+			<!--头部-->
+			<a-link :href="data.link" v-if="data.link || data.title">
+				<div style="padding:15px 0;">
+					<table cellspacing="0" cellpadding="0" style="width: 100%;">
+						<tr>
+							<td style="text-align:center">
+								<img src="./src/modeltop.png" style="width: 30%;">
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:center">
+								<span style="color: white;">{{ data.title }}</span>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</a-link>
+			<table style="width:100%;table-layout: fixed;" class="waterfall-table" cellspacing="0" cellpadding="0">
+				<tr >
+					<!--左侧-->
+					<td style="vertical-align: top;">
+						<div class="left-column">
+							<div class="waterfall-item" v-if="data.leftTop.pic_url" style="background-color: white;margin-bottom: 10px;border-radius:0 0 8px 8px;">
+								<a-link :href="data.leftTop.link">
+									<img :src="data.leftTop.pic_url" alt="" style="max-width:100%;max-height:100%;vertical-align:middle;">
+								</a-link>
+							</div>
+							<div v-for="item,index in data.list" v-if="index % 2 == 0" class="waterfall-item bg-block" style="background-color: white;margin-bottom: 10px;position:relative;border-radius:0 0 5px 5px;padding-bottom: 20px;">
+								<goods-link :numIid="item.num_iid">
+									<aspect :ratio="1" :css="{textAlign: 'center'}">
+										<img :src="item.pic_url" alt="" style="max-width:100%;max-height:100%;vertical-align:middle;">
+									</aspect>
+									<!--图片底部的细条-->
+									<div class="img-bottom-bar" style="height: 3px;background-image: url(./src/tworowbottom.png);background-size: auto 100%;"></div>
+									<!--宝贝名-->
+									<div class="goods-title" v-if="data.show_title" style="width: 100%;height: 2em;line-height: 2em;font-size: 12px; overflow: hidden;padding: 0 5px; color: #000000;">
+										{{ item.title }}
+									</div>
+									<div class="price-block" style="padding: 0 5px; text-align: center;position: relative;">
+										<!--价格-->
+										<span class="price" style="font-size: 16px;color: #ff0100;">{{item.price | pri}}</span>
+										<!--原价-->
+										<span class="prev-price color-prev-price" v-if="data.show_prev_price" style="font-size: 12px;margin-left: 5px;color: #aaaaaa;text-decoration: line-through;">{{item.prev_price | pri}}</span>
+									</div>
+									<!--底部的小图片-->
+									<div class="item-bottom-img-wrap" style="position: absolute;width: 100%;bottom: 0;text-align: center;">
+										<img class="item-bottom-img" src="./src/itemBottom.png" style="width: 50%; margin: 0 auto;margin-bottom: -12px;">
+									</div>
+								</goods-link>
+							</div>
+							<empty-layout v-if="data.list.length==0"></empty-layout>
+						</div>
+					</td>
+					<td style="width: 5px;">
+					</td>
+					<!--右侧-->
+					<td style="vertical-align: top;">
+						<div class="right-column">
+							<div v-for="item,index in data.list" v-if="index % 2 != 0" class="waterfall-item bg-block" style="background-color: white;margin-bottom: 10px;position:relative;border-radius:0 0 5px 5px;padding-bottom: 20px;">
+								<goods-link :numIid="item.num_iid">
+									<aspect :ratio="1" :css="{textAlign: 'center'}">
+										<img :src="item.pic_url" alt="" style="max-width:100%;max-height:100%;vertical-align:middle;">
+									</aspect>
+									<!--图片底部的细条-->
+									<div class="img-bottom-bar" style="height: 3px;background-image: url(./src/tworowbottom.png);background-size: auto 100%;"></div>
+									<!--宝贝名-->
+									<div class="goods-title" v-if="data.show_title" style="width: 100%;height: 2em;line-height: 2em;font-size: 12px; overflow: hidden;padding: 0 5px; color: #000000;">
+										{{ item.title }}
+									</div>
+									<div class="price-block" style="padding: 0 5px; text-align: center;position: relative;">
+										<!--价格-->
+										<span class="price" style="font-size: 16px;color: #ff0100;">{{item.price | pri}}</span>
+										<!--原价-->
+										<span class="prev-price color-prev-price" v-if="data.show_prev_price" style="font-size: 12px;margin-left: 5px;color: #aaaaaa;text-decoration: line-through;">{{item.prev_price | pri}}</span>
+									</div>
+									<!--底部的小图片-->
+									<div class="item-bottom-img-wrap" style="position: absolute;width: 100%;bottom: 0;text-align: center;">
+										<img class="item-bottom-img" src="./src/itemBottom.png" style="width: 50%; margin: 0 auto;margin-bottom: -12px;">
+									</div>
+								</goods-link>
+							</div>
+							<empty-layout v-if="data.list.length==0"></empty-layout>
+							<div class="waterfall-item" v-if="data.rightBottom.pic_url" style="background-color: white;margin-bottom: 10px;border-radius: 0 0 8px 8px;">
+								<a-link :href="data.rightBottom.link">
+									<img :src="data.rightBottom.pic_url" alt="" style="max-width:100%;max-height:100%;vertical-align:middle">
+								</a-link>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</script>
+
+
+	<script>
+		var template = document.getElementById('data-block').innerHTML;
+		console.log(template);
+		document.getElementById('data-block').innerHTML = '';
+	</script>
+
+	<script src="http://cdn.staticfile.org/vue/2.5.17/vue.js"></script>
+	<script src="http://localhost:8080/dist/widget.js"></script>
+	<!--<script src="./widget.js"></script>-->
+	<script>
+		var data = {
+			"global": {
+				"title": "瀑布流",
+				"bgBody": "rgba(168,46,46,1)",
+				"bgBlock": "white",
+				"bgTheme": "rgba(76,20,124,1)",
+				"bgLight": "white",
+				"colorTheme": "rgba(146,29,29,1)",
+				"colorLight": "white",
+				"colorBorder": "rgba(128,55,88,1)",
+				"colorTitle": "rgba(233,49,82,1)",
+				"style": "dddddd"
+			},
+			"style": "",
+			"widgets": [{
+				"name": "waterfallTest",
+				"template": template,
+				"style": ".oneRowC83BBFEFE2A000011FD2C5DFF5461A9F{}",
+				"p": false,
+				"image": "http://imgs.aixifan.com/o_1ct5mhbf315r61rjh16b6qlo11bm2l.jpg",
+				"id": 17,
+				"type": "oneRow"
+			}],
+			"list": [{
+				is: "waterfallTest",
+				leftTop: {
+					link: "",
+					pic_url: "./src/waterfallLeftTop.png",
+				},
+				rightBottom: {
+					link: "",
+					pic_url: "./src/waterfallRightBottom.png",
+				},
+				show_prev_price: true,
+				show_title: true,
+				title: '',
+				type: 'waterfall',
+				list: [
+					{
+						num:0,
+						num_iid:578027018580,
+						pic_url:"https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEYNuBLbyuds-105227988.jpg",
+						prev_price:"69.00",
+						price:"69.00",
+						title: "1韩版夏季半身裙一步裙西装裙工装裙大码职业短裙性感包臀裙a字裙",
+					},
+					{
+						num:0,
+						num_iid:578027018580,
+						pic_url:"https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEYNuBLbyuds-105227988.jpg",
+						prev_price:"69.00",
+						price:"69.00",
+						title: "1韩版夏季半身裙一步裙西装裙工装裙大码职业短裙性感包臀裙a字裙",
+					},
+					{
+						num:0,
+						num_iid:578027018580,
+						pic_url:"https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEYNuBLbyuds-105227988.jpg",
+						prev_price:"69.00",
+						price:"69.00",
+						title: "1韩版夏季半身裙一步裙西装裙工装裙大码职业短裙性感包臀裙a字裙",
+					},
+					{
+						num:0,
+						num_iid:578027018580,
+						pic_url:"https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEYNuBLbyuds-105227988.jpg",
+						prev_price:"69.00",
+						price:"69.00",
+						title: "1韩版夏季半身裙一步裙西装裙工装裙大码职业短裙性感包臀裙a字裙",
+					},
+					{
+						num:0,
+						num_iid:578027018580,
+						pic_url:"https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEYNuBLbyuds-105227988.jpg",
+						prev_price:"69.00",
+						price:"69.00",
+						title: "1韩版夏季半身裙一步裙西装裙工装裙大码职业短裙性感包臀裙a字裙",
+					},
+					{
+						num:0,
+						num_iid:578027018580,
+						pic_url:"https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEYNuBLbyuds-105227988.jpg",
+						prev_price:"69.00",
+						price:"69.00",
+						title: "1韩版夏季半身裙一步裙西装裙工装裙大码职业短裙性感包臀裙a字裙",
+					},
+				]
+			}]
+		}
+	</script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				activeIndex: -1,
+				data: data,
+			},
+			methods: {
+				
+			},
+			mounted: function(){
+				
+			}
+		})
+		
+	</script>
+</body>
+</html>

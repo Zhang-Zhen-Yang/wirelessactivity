@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>搭配套餐</title>
+	<style>
+		.action-wrap{
+			padding: 5px;
+		}
+		.action-wrap-sub{
+			padding: 0;
+		}
+		.action-wrap-poster{
+			padding: 0;
+		}
+	</style>
+
+	<style>
+		.promotionMealTest .promotion-meal-content::-webkit-scrollbar {
+			width: 10px;
+			height: 10px;
+			overflow: hidden;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="app">
+		<wireless
+			:data="data"
+			:activeIndex="activeIndex"
+		/>
+	</div>
+	
+	<!--模板数据-->
+	<script type="tempate" id="data-block" style="display:none">
+		<!--
+
+			1.data:
+			{
+				// 套餐价
+				meal_price:	"200",
+				// 套餐名
+				title:"套餐搭配20181018",
+				// 总价
+				total_price:"204.00", 
+				type:"promotionMeal",
+				is:"promotionMealTest",
+				// 套餐链接
+				link:"https://wonbao.ews.m.jaeapp.com/meal/index?sellerId=105227988&mealId=119920",
+				// 宝贝列表
+				"list": [{
+					num_iid:"539604040021",
+					pic_url:"https://img.alicdn.com/bao/uploaded/i1/105227988/TB20.SdXNIa61BjSsziXXak4FXa_!!105227988.jpg",
+					price:"102.00",
+					title:"哈哈哈还好还好哈男女拖厚底防滑塑料凉拖鞋",
+				},{
+					num_iid:"561952374578",
+					pic_url:"https://img.alicdn.com/bao/uploaded/i3/105227988/TB2AywRo2DH8KJjy1XcXXcpdXXa-105227988.jpg",
+					price:"102.00",
+					title:"11208春秋新款一粒扣长袖小西女女外套西装啊2",
+				}]
+			}
+		-->
+		<a-link :href="data.link">
+			<div class="promotionMealTest" style="overflow: hidden;background-color: #d60934;">
+			  <div v-if="data.title" style="text-align: left;padding: 5px 0 5px 10px;background-color: white;">
+				<span style="font-size: 16px;color: #111111;">搭配套餐</span>
+				<span style="font-size: 14px;margin-left: 5px;color: #666666;">{{data.title}} (共{{data.list.length}}件)</span>
+			  </div>
+			  <div style="width: 100%;padding: 20px;white-space: nowrap;word-break: nowrap;overflow: auto;">
+				<template class="promotion-meal" v-for="item,index in data.list">
+					<!--宝贝图片-->
+					<img :src="item.pic_url" alt="" style="vertical-align:middle; width: 30%;border:1px solid #a61001;">
+					<!--加号-->
+					<span class="promotion-meal-join-icon" style="font-size: 40px;vertical-align: middle;color: #a61001;" v-if="data.list[index+1]">+</span>
+				</template>
+				<empty-layout v-if="data.list.length == 0"></empty-layout>
+			  </div>
+			  
+			  <!--套餐价-->
+			  <div style="background-color:white;">
+				  <table cellspacing="0" cellpadding="0"  style="table-layout: fixed;width:100%;">
+					  <tr>
+						  <td style="color:#d60934;padding-left:10px;">
+							  <!--价格-->
+							  搭配价：<span style="font-size: 20px;">¥{{ data.meal_price | pri }}</span>
+							  <!--原价-->
+							  <span style="font-size: 14px;margin-left: 10px;text-decoration: line-through;">{{ data.total_price | pri}}</span>
+						  </td>
+						  <td style="background-color: orange;color:white;font-size:20px;text-align:center;vertical-align:middle;width:5em;line-height:2em;">
+							  立即购买
+						  </td>
+					  </tr>
+				  </table>
+			  </div>
+			</div>
+		  </a-link>
+
+	</script>
+
+
+	<script>
+		var template = document.getElementById('data-block').innerHTML;
+		console.log(template);
+		document.getElementById('data-block').innerHTML = '';
+	</script>
+
+	<script src="http://cdn.staticfile.org/vue/2.5.17/vue.js"></script>
+	<script src="http://localhost:8080/dist/widget.js"></script>
+	<!--<script src="./widget.js"></script>-->
+	<script>
+		var data = {
+			"global": {
+				"title": "搭配套餐",
+				"bgBody": "rgba(168,46,46,1)",
+				"bgBlock": "white",
+				"bgTheme": "rgba(76,20,124,1)",
+				"bgLight": "white",
+				"colorTheme": "rgba(146,29,29,1)",
+				"colorLight": "white",
+				"colorBorder": "rgba(128,55,88,1)",
+				"colorTitle": "rgba(233,49,82,1)",
+				"style": "dddddd"
+			},
+			"style": "",
+			"widgets": [{
+				"name": "promotionMealTest",
+				"template": template,
+				"style": ".oneRowC83BBFEFE2A000011FD2C5DFF5461A9F{}",
+				"p": false,
+				"image": "http://imgs.aixifan.com/o_1ct5mhbf315r61rjh16b6qlo11bm2l.jpg",
+				"id": 17,
+				"type": "oneRow"
+			}],
+			"list": [{
+				meal_price:	"200",
+				title:"套餐搭配20181018",
+				total_price:"204.00",
+				type:"promotionMeal",
+				is:"promotionMealTest",
+				link:"https://wonbao.ews.m.jaeapp.com/meal/index?sellerId=105227988&mealId=119920",
+				"list": [{
+					num_iid:"539604040021",
+					pic_url:"https://img.alicdn.com/bao/uploaded/i1/105227988/TB20.SdXNIa61BjSsziXXak4FXa_!!105227988.jpg",
+					price:"102.00",
+					title:"哈哈哈还好还好哈男女拖厚底防滑塑料凉拖鞋",
+				}, {
+					num_iid:"561952374578",
+					pic_url:"https://img.alicdn.com/bao/uploaded/i3/105227988/TB2AywRo2DH8KJjy1XcXXcpdXXa-105227988.jpg",
+					price:"102.00",
+					title:"11208春秋新款一粒扣长袖小西女女外套西装啊2",
+				}]
+			}]
+		}
+	</script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				activeIndex: -1,
+				data: data,
+			},
+			methods: {
+				
+			},
+			mounted: function(){
+				
+			}
+		})
+		
+	</script>
+</body>
+</html>

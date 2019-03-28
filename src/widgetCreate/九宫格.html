@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>九宫格</title>
+	<style>
+		.action-wrap{
+			padding: 5px;
+		}
+		.action-wrap-sub{
+			padding: 0;
+		}
+		.action-wrap-poster{
+			padding: 0;
+		}
+	</style>
+
+	<style>
+
+.threeRowTest {
+  background-color: white;
+}
+.threeRowTest .three-row {
+  width: 100%;
+  table-layout: fixed;
+}
+.threeRowTest .three-row img {
+    vertical-align: bottom;
+}
+.threeRowTest .three-row td {
+    width: 33.333%;
+    padding: 2.5px;
+}
+.threeRowTest .three-row .three-row-item {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.threeRowTest .three-row .goods-pic {
+    width: 100%;
+}
+.threeRowTest .three-row .goods-title {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    /* white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    padding: 5px;*/
+    height: 2em;
+    line-height: 2em;
+    font-size: 14px;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    overflow: hidden;
+    z-index: 1;
+}
+.threeRowTest .three-row .goods-title-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    background: #000000;
+    z-index: -1;
+}
+.threeRowTest .three-row-table {
+  width: 100%;
+}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<wireless
+			:data="data"
+			:activeIndex="activeIndex"
+		/>
+	</div>
+
+	<!--模板数据-->
+	<script type="template" id="data-block" style="display:none">
+			<!--
+				提供的数据
+				1.data:
+				{
+					"type": "threeRow",
+					"is": "oneRowC83BBFEFE2A000011FD2C5DFF5461A9F",
+					"show_prev_price": true, // 是否显示原价
+					"show_title": true, // 是否显标题
+					// 宝贝列表 应该循环显示出来
+					"list": [
+						{
+							"title": "矮小个子155cm女装衬衫女长袖职业修身上衣韩版气质格子拼接", // 宝贝名称
+							"pic_url": "https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEXq4lRzxZzC-105227988.jpg", // 宝贝图片
+							"price": "109.00", // 价格
+							"prev_price": "109.00", // 原价
+							"num_iid": 578026982963, // num_iid
+							"num": 0 // 数量
+						}, {
+							"title": "职业装韩版上衣秋装2018衬衫女长袖气质工作服女上班衣服女装",
+							"pic_url": "https://img.alicdn.com/bao/uploaded/i2/105227988/O1CN0128sYEYxPKF2oXxz-105227988.jpg",
+							"price": "91.00",
+							"prev_price": "91.00",
+							"num_iid": 577902709302,
+							"num": 0
+						},
+						{
+							"title": "矮小个子155cm女装衬衫女长袖职业修身上衣韩版气质格子拼接",
+							"pic_url": "https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEXq4lRzxZzC-105227988.jpg",
+							"price": "109.00",
+							"prev_price": "109.00",
+							"num_iid": 578026982963,
+							"num": 0
+						}, {
+							"title": "职业装韩版上衣秋装2018衬衫女长袖气质工作服女上班衣服女装",
+							"pic_url": "https://img.alicdn.com/bao/uploaded/i2/105227988/O1CN0128sYEYxPKF2oXxz-105227988.jpg",
+							"price": "91.00",
+							"prev_price": "91.00",
+							"num_iid": 577902709302,
+							"num": 0
+						},
+					]
+				}
+				2.get3ColArray:
+				宝贝列表数组
+				根据data.list 转换而来
+				变成了[
+					[
+						{
+
+						},
+						{
+
+						},
+						{
+
+						}
+					],
+					[
+						{
+
+						}
+					]
+				]
+				这样的列表
+
+
+			-->
+			<div class="threeRowTest">
+				<widget-header :title="data.title" :link="data.link"></widget-header>
+				<empty-layout v-if="data.list.length == 0" />
+				<table class="three-row" cellspacing="0" cellpadding="0">
+					<!-- get3ColArray 是宝贝列表数组 每一个是有 1~3 个 宝贝 -->
+					<tr v-for="item,index in get3ColArray">
+					<td v-for="i in item">
+						<goods-link :numIid="item[0].num_iid">
+							<div class="three-row-item" >
+								<aspect>
+								<img class="goods-pic" :src="i.pic_url" alt="">
+								</aspect>
+								<div class="goods-title" v-if="data.show_title">
+									<div class="goods-title-bg"></div>
+									<span class="goods-title">{{ i.title }}</span>
+								</div>
+							</div>
+						</goods-link>
+					</td>
+					<td v-if="!item[1]"></td>
+					<td v-if="!item[2]"></td>
+					</tr>
+				</table>
+			</div>
+
+
+
+	</script>
+	<script>
+		var template = document.getElementById('data-block').innerHTML;
+		console.log(template);
+		document.getElementById('data-block').innerHTML = '';
+	</script>
+
+
+	<script src="http://cdn.staticfile.org/vue/2.5.17/vue.js"></script>
+	<script src="http://localhost:8080/dist/widget.js"></script>
+	<!--<script src="./widget.js"></script>-->
+	<script>
+		var data = {
+			"global": {
+				"title": "九宫格",
+				"bgBody": "rgba(168,46,46,1)",
+				"bgBlock": "white",
+				"bgTheme": "rgba(76,20,124,1)",
+				"bgLight": "white",
+				"colorTheme": "rgba(146,29,29,1)",
+				"colorLight": "white",
+				"colorBorder": "rgba(128,55,88,1)",
+				"colorTitle": "rgba(233,49,82,1)",
+				"style": "dddddd"
+			},
+			"style": "\n.action-wrap{\n\tpadding: 5px;\n}\n.action-wrap-sub{\n\tpadding: 0;\n}\n.action-wrap-poster{\n\tpadding: 0;\n}",
+			"widgets": [{
+				"name": "oneRowC83BBFEFE2A000011FD2C5DFF5461A9F",
+				"template": template,
+				"style": ".oneRowC83BBFEFE2A000011FD2C5DFF5461A9F{}",
+				"p": false,
+				"image": "http://imgs.aixifan.com/o_1ct5mhbf315r61rjh16b6qlo11bm2l.jpg",
+				"id": 17,
+				"type": "threeRow"
+			}],
+			"list": [
+				// data:
+				{
+					"type": "threeRow",
+					"is": "oneRowC83BBFEFE2A000011FD2C5DFF5461A9F",
+					"show_prev_price": true, // 是否显示原价
+					"show_title": true, // 是否显标题
+					// 宝贝列表 应该循环显示出来
+					"list": [
+						{
+							"title": "矮小个子155cm女装衬衫女长袖职业修身上衣韩版气质格子拼接", // 宝贝名称
+							"pic_url": "https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEXq4lRzxZzC-105227988.jpg", // 宝贝图片
+							"price": "109.00", // 价格
+							"prev_price": "109.00", // 原价
+							"num_iid": 578026982963, // num_iid
+							"num": 0 // 数量
+						}, {
+							"title": "职业装韩版上衣秋装2018衬衫女长袖气质工作服女上班衣服女装",
+							"pic_url": "https://img.alicdn.com/bao/uploaded/i2/105227988/O1CN0128sYEYxPKF2oXxz-105227988.jpg",
+							"price": "91.00",
+							"prev_price": "91.00",
+							"num_iid": 577902709302,
+							"num": 0
+						},
+						{
+							"title": "矮小个子155cm女装衬衫女长袖职业修身上衣韩版气质格子拼接",
+							"pic_url": "https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEXq4lRzxZzC-105227988.jpg",
+							"price": "109.00",
+							"prev_price": "109.00",
+							"num_iid": 578026982963,
+							"num": 0
+						}, {
+							"title": "职业装韩版上衣秋装2018衬衫女长袖气质工作服女上班衣服女装",
+							"pic_url": "https://img.alicdn.com/bao/uploaded/i2/105227988/O1CN0128sYEYxPKF2oXxz-105227988.jpg",
+							"price": "91.00",
+							"prev_price": "91.00",
+							"num_iid": 577902709302,
+							"num": 0
+						},
+					]
+				}
+			]
+		}
+	</script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				activeIndex: -1,
+				data: data,
+			},
+			methods: {
+				
+			},
+			mounted: function(){
+				
+			}
+		})
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>优惠券</title>
+	<style>
+		.action-wrap{
+			padding: 5px;
+		}
+		.action-wrap-sub{
+			padding: 0;
+		}
+		.action-wrap-poster{
+			padding: 0;
+		}
+	</style>
+
+	<style>
+		.coupon table {
+			width: 100%;
+		}
+		.coupon td {
+			width: 33.3%;
+			text-align: center;
+			position: relative;
+		}
+		.coupon td:first-child {
+			text-align: left;
+		}
+		.coupon td:last-child {
+			text-align: right;
+		}
+		.coupon .coupon-list-item {
+			display: inline-block;
+			width: 98%;
+			position: relative;
+			padding: 3px;
+			text-align: left;
+			background-color: white;
+		}
+		.coupon .coupon-list-item:after {
+			content: '点击领取';
+			display: inline-block;
+			position: absolute;
+			right: 0;
+			top: 0;
+			background-color: orange;
+			color: white;
+			height: 100%;
+			width: 2.5em;
+			font-size: 12px;
+			text-align: center;
+			padding: 3px;
+			padding-top: 5px;
+			box-sizing: border-box;
+		}
+		.coupon .coupon-price {
+			font-size: 20px;
+		}
+		.coupon .coupon-details {
+			font-size: 12px;
+		}
+		.coupon .coupon-null-notice {
+			text-align: center;
+			padding: 10px;
+			background-color: #ededed;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<wireless
+			:data="data"
+			:activeIndex="activeIndex"
+		/>
+	</div>
+	<div style="display: none;">
+		
+	</div>
+	<!--模板数据-->
+	<script type="tempate" id="data-block" style="display:none">
+		<!--
+			1.data:
+			{
+				type: 'coupon',
+				is: 'coupontest',
+				// 优惠券列表
+				list: [
+				// 这个是旺店宝优惠券
+				{
+					"id":142672, // 优惠券id
+					"name":"折扣券",
+					// 优惠券类型
+					"type":"Discount", （Discount 为折扣券; Price 为减价券; FreePostage为免邮券）
+					"decreaseMoney":0, （减多少钱）
+					"discountRate":1, （打多少折）
+					"totalPrice":0, （使用条件，如果为0则为无条件）
+					// 开始时间
+					"startTime":{
+						"date":23,"day":5,"hours":0,"minutes":0,"month":10,"seconds":0,"time":1542902400000,"timezoneOffset":-480,"year":118
+					},
+					// 结束时间
+					"endTime":{
+						"date":23,"day":0,"hours":23,"minutes":59,"month":11,"seconds":0,"time":1545580740000,"timezoneOffset":-480,"year":118
+					},
+					"from":"wb", // 优惠券来源 (wb 是旺店宝，)
+					"link":"https://wonbao.ews.m.jaeapp.com/mjsCoupon/index?couponId=142672&userId=105227988" // 优惠券链接
+				},
+				{
+					"id":142671,
+					"name":"代金券",
+					"startTime":{
+						"date":23,"day":5,"hours":0,"minutes":0,"month":10,"seconds":0,"time":1542902400000,
+						"timezoneOffset":-480,"year":118
+					},
+					"endTime":{
+						"date":23,"day":0,"hours":23,"minutes":59,"month":11,"seconds":0,"time":1545580740000,
+						"timezoneOffset":-480,"year":118
+					},
+					"from":"wb",
+					"link":"https://wonbao.ews.m.jaeapp.com/mjsCoupon/index?couponId=142671&userId=105227988"
+				},
+				{
+					"id":142671,
+					denominations: '',// 优惠券金额
+					condition: '',// 使用条件
+					"from":"promotion",
+					// 优惠券链接
+					"activityUrl":"https://wonbao.ews.m.jaeapp.com/mjsCoupon/index?couponId=142671&userId=105227988"
+				}]
+			}
+		-->
+		<div class="coupon">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td v-for="item,index in data.list">
+						<!--如果是旺店宝优惠券-->
+						<a-link v-if="item.from == 'wb'" :href="item.link">
+							<div class="coupon-list-item" >
+								<div class="coupon-price">{{ item.type == 'Discount' ? `${item.discountRate}折` : (item.type == 'Price' ? `${item.decreaseMoney}元` : (item.type == 'FreePostage' ? '免邮' : '')) }}</div>
+								<div class="coupon-details">{{ item.totalPrice > 0 ? `满${item.totalPrice}元` : '无条件' }}使用</div>
+							</div>
+						</a-link>
+						<!--如果是官方优惠券-->
+						<a-link v-if="item.from == 'promotion'" :href="item.activityUrl">
+							<div class="coupon-list-item">
+								<div class="coupon-price">{{ item.denominations }}</div>
+								<div class="coupon-details">{{ `满${item.condition}元` }}使用</div>
+							</div>
+						</a-link>
+					</td>
+				</tr>
+			</table>
+			<div v-if="data.list.length == 0" class="coupon-null-notice">
+				无优惠券
+			</div>
+		</div>
+	</script>
+
+
+	<script>
+		var template = document.getElementById('data-block').innerHTML;
+		console.log(template);
+		document.getElementById('data-block').innerHTML = '';
+	</script>
+
+	<script src="http://cdn.staticfile.org/vue/2.5.17/vue.js"></script>
+	<script src="http://localhost:8080/dist/widget.js"></script>
+	<!--<script src="./widget.js"></script>-->
+	<script>
+		var data = {
+			"global": {
+				"title": "优惠券",
+				"bgBody": "rgba(168,46,46,1)",
+				"bgBlock": "white",
+				"bgTheme": "rgba(76,20,124,1)",
+				"bgLight": "white",
+				"colorTheme": "rgba(146,29,29,1)",
+				"colorLight": "white",
+				"colorBorder": "rgba(128,55,88,1)",
+				"colorTitle": "rgba(233,49,82,1)",
+				"style": "dddddd"
+			},
+			"style": "",
+			"widgets": [{
+				"name": "coupontest",
+				"template": template,
+				"style": ".tabtest{}",
+				"p": false,
+				"image": "http://imgs.aixifan.com/o_1ct5mhbf315r61rjh16b6qlo11bm2l.jpg",
+				"id": 17,
+				"type": "tab"
+			}],
+			"list": [{
+				type: 'coupon',
+				is: 'coupontest',
+				list: [{
+					"id":142672,
+					"name":"折扣券",
+					"type":"Discount",
+					"decreaseMoney":0,
+					"discountRate":1,
+					"totalPrice":0,
+					"startTime":{
+						"date":23,"day":5,"hours":0,"minutes":0,"month":10,"seconds":0,"time":1542902400000,"timezoneOffset":-480,"year":118},
+						"endTime":{"date":23,"day":0,"hours":23,"minutes":59,"month":11,"seconds":0,"time":1545580740000,"timezoneOffset":-480,"year":118
+					},
+					"from":"wb",
+					"link":"https://wonbao.ews.m.jaeapp.com/mjsCoupon/index?couponId=142672&userId=105227988"
+				},{
+					"id":142671,"name":"代金券",
+					"type":"Price",
+					"decreaseMoney":122,
+					"discountRate":0,
+					"totalPrice":0,
+					"startTime":{
+						"date":23,"day":5,"hours":0,"minutes":0,"month":10,"seconds":0,"time":1542902400000,
+						"timezoneOffset":-480,"year":118
+					},
+					"endTime":{
+						"date":23,"day":0,"hours":23,"minutes":59,"month":11,"seconds":0,"time":1545580740000,
+						"timezoneOffset":-480,"year":118
+					},
+					"from":"wb",
+					"link":"https://wonbao.ews.m.jaeapp.com/mjsCoupon/index?couponId=142671&userId=105227988"
+				}]
+			}]
+		}
+	</script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				activeIndex: -1,
+				data: data,
+			},
+			methods: {
+				
+			},
+			mounted: function(){
+				
+			}
+		})
+		
+	</script>
+</body>
+</html>

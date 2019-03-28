@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>爆款推荐</title>
+	<style>
+		.action-wrap{
+			padding: 5px;
+		}
+		.action-wrap-sub{
+			padding: 0;
+		}
+		.action-wrap-poster{
+			padding: 0;
+		}
+	</style>
+
+	<style>
+		.hotItemTest .goods-title {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: 14px;
+			padding: 5px;
+			color: orange;
+		}
+		.hotItemTest .price-block {
+			border-right: none;
+			border-bottom: none;
+			padding: 5px;
+			text-align: left;
+			position: relative;
+		}
+		.hotItemTest .count-num{
+			background-color: orange;
+		}
+		
+	</style>
+</head>
+<body>
+	<div id="app">
+		<wireless
+			:data="data"
+			:activeIndex="activeIndex"
+		/>
+	</div>
+	
+	<!--模板数据-->
+	<script type="tempate" id="data-block" style="display:none">
+			<!--
+				提供的数据
+				1.data
+					{
+						"type": "hotItem",
+						"is": "oneRowC83BBFEFE2A000011FD2C5DFF5461A9F",
+						"show_prev_price": true, // 是否显示原价
+						"show_title": true, // 是否显示标题
+						title: 'dddd', // 模块标题
+						link: 'dddd', // 模块链接
+						// 宝贝列表（只有一个）
+						"list": [{
+							"title": "矮小个子155cm女装衬衫女长袖职业修身上衣韩版气质格子拼接",
+							"pic_url": "https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEXq4lRzxZzC-105227988.jpg",
+							"price": "109.00",
+							"prev_price": "109.00",
+							"num_iid": 578026982963,
+							"num": 0
+						}],
+						startDate: Date.now(), // 开始时间
+						endDate: Date.now() + 3600 * 24 * 1000,//结否时间
+					}
+				2.step
+					状态 0 为 活动未开始; 1 为 活动中; 2 为 活动已结束
+				3.day
+				4.hours
+				5.minutes
+				6.seconds
+					距离 day 天 hours 小时 minutes 分 seconds 秒 活动开始或结束;
+
+			-->
+			<div class="hotItemTest hot-item-wrap" style="background-color: white;">
+				<div class="hot-item border-theme" v-for="item,index in data.list" :key="index">
+					<goods-link :numIid="item.num_iid">
+						<!--宝贝图片-->
+						<img :src="item.pic_url" alt="" style="width:100%;vertical-align: middle;">
+						<empty-layout v-if="!item.pic_url"></empty-layout>
+						<table cellspacing="0" cellpadding="0" style="width:100%;table-layout:fixed;">
+							<tr>
+								<!--名称-->
+								<td class="goods-title" style="width: 50%;border-top:1px solid orange;">
+									{{ item.title }}
+								</td>
+								<td style="border-left:1px solid orange;border-top:1px solid orange;">
+									<div class="price-block">
+										<!--价格-->
+										<span style="">¥{{item.price|pri}}</span>
+										<!--原价-->
+										<span style="text-decoration: line-through;">{{item.prev_price|pri}}</span>
+									</div>
+								</td>
+							</tr>
+							<!--倒计时-->
+							<tr>
+								<td colspan="2"
+									class="time-counter-wrap"
+									style="border-top:1px solid orange;background-image:url(http://imgs.aixifan.com/o_1ct5mhbf315r61rjh16b6qlo11bm2l.jpg);background-size: cover;">
+									<aspect :ratio="0.2">
+										<v-center :css="{width: '100%', height: '100%'}">
+											<div class="count-down-display" v-if="step!= 2">
+												距{{data.name}}{{ step == 0 ? '开始' : '结束'}} 
+												<count-num :num="day||0"/>天<countNum :num="hours||0"/>:<countNum :num="minutes||0"/>:<count-num :num="seconds||0"/>
+											</div>
+											<div class="" v-else>
+												活动已结束
+											</div>
+										</v-center>
+									</aspect>
+								</td>
+							</tr>
+						</table>
+					</goods-link>
+				</div>
+			</div>
+
+	</script>
+
+
+	<script>
+		var template = document.getElementById('data-block').innerHTML;
+		console.log(template);
+		document.getElementById('data-block').innerHTML = '';
+	</script>
+
+	<script src="http://cdn.staticfile.org/vue/2.5.17/vue.js"></script>
+	<script src="http://localhost:8080/dist/widget.js"></script>
+	<!--<script src="./widget.js"></script>-->
+	<script>
+		var data = {
+			"global": {
+				"title": "爆款推荐",
+				"bgBody": "rgba(168,46,46,1)",
+				"bgBlock": "white",
+				"bgTheme": "rgba(76,20,124,1)",
+				"bgLight": "white",
+				"colorTheme": "rgba(146,29,29,1)",
+				"colorLight": "white",
+				"colorBorder": "rgba(128,55,88,1)",
+				"colorTitle": "rgba(233,49,82,1)",
+				"style": "dddddd"
+			},
+			"style": "",
+			"widgets": [{
+				"name": "oneRowC83BBFEFE2A000011FD2C5DFF5461A9F",
+				"template": template,
+				"style": ".oneRowC83BBFEFE2A000011FD2C5DFF5461A9F{}",
+				"p": false,
+				"image": "http://imgs.aixifan.com/o_1ct5mhbf315r61rjh16b6qlo11bm2l.jpg",
+				"id": 17,
+				"type": "hotItem"
+			}],
+			"list": [{
+				"type": "hotItem",
+				"is": "oneRowC83BBFEFE2A000011FD2C5DFF5461A9F",
+				"show_prev_price": true,
+				"show_title": true,
+				title: 'dddd',
+				link: 'dddd',
+				"list": [{
+					"title": "矮小个子155cm女装衬衫女长袖职业修身上衣韩版气质格子拼接",
+					"pic_url": "https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEXq4lRzxZzC-105227988.jpg",
+					"price": "109.00",
+					"prev_price": "109.00",
+					"num_iid": 578026982963,
+					"num": 0
+				}],
+				startDate: Date.now(),
+				endDate: Date.now() + 3600 * 24 * 1000,
+			}]
+		}
+	</script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				activeIndex: -1,
+				data: data,
+			},
+			methods: {
+				
+			},
+			mounted: function(){
+				
+			}
+		})
+		
+	</script>
+</body>
+</html>

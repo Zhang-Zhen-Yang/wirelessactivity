@@ -1,0 +1,12 @@
+body{
+	margin: 0;
+}
+body *{
+	box-sizing: border-box;
+}
+/* .action-wrap.action-wrap-favorite{
+	padding: 0;
+}
+.action-wrap.action-wrap-pageBottom{
+	padding: 0;
+}*/

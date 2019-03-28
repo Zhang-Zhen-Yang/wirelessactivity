@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>倒时计</title>
+	<style>
+		.action-wrap{
+			padding: 5px;
+			background-image: url(./src/tabbg.jpg);
+		}
+		.action-wrap-sub{
+			padding: 0;
+		}
+		.action-wrap-poster{
+			padding: 0;
+		}
+	</style>
+	<style>
+		.count-num-wrap{
+			/* background-color: orange;*/
+		}
+		.countDown1{
+			width: 100%;
+			height: 100%;
+			background-image:url(./src/tabbg.jpg);
+		}
+		.countDown1 table{
+			width: 100%;
+			height: 100%;
+		}
+		.countDown1 table td div{
+			display: inline-block;
+			font-size: 14px;
+		}
+		.countDown1 table td{
+			vertical-align: middle;
+			text-align: center;
+			color: #efefef;
+		}
+		.countDown1 .count-num{
+			/*margin-left: 5px;*/
+			/* background-color: orange;*/
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<wireless
+			:data="data"
+			:activeIndex="activeIndex"
+		/>	
+	</div>
+
+
+
+	<!--模板数据-->
+	<script type="template" id="data-block" style="display:none">
+			<!--
+				1.data
+					{
+						"is": "oneRowC83BBFEFE2A000011FD2C5DFF5461A9F",
+						type: 'countDown',
+						startDate: Date.now() + 3600 * 1000,
+						endDate: Date.now() + 3600 * 24 *1000,
+						// 名称 一般显示 距离 name 结束
+						name: '活动',
+					}
+				2.step
+					状态 0 为 活动未开始; 1 为 活动中; 2 为 活动已结束
+				3.day
+				4.hours
+				5.minutes
+				6.seconds
+					距离 day 天 hours 小时 minutes 分 seconds 秒 活动开始或结束; 一般合 count-num 使用
+			-->
+			<aspect :ratio="0.1">
+				<div class="countDown1">
+					<table>
+						<tr>
+							<td>
+								<div class="count-down-display" v-if="step!= 2">
+									距{{data.name}}{{ step == 0 ? '开始' : '结束'}} 
+									<count-num :num="day||0"/>天<countNum :num="hours||0"/>:<countNum :num="minutes||0"/>:<count-num :num="seconds||0"/>
+								</div>
+								<div class="" v-else>
+									活动已结束
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</aspect>
+		
+	</script>
+	<script>
+		var template = document.getElementById('data-block').innerHTML;
+		console.log(template);
+		document.getElementById('data-block').innerHTML = '';
+	</script>
+	<script src="http://cdn.staticfile.org/vue/2.5.17/vue.js"></script>
+	<script src="http://localhost:8080/dist/widget.js"></script>
+	<!--<script src="./widget.js"></script>-->
+	<script>
+		var data = {
+			"global": {
+				"title": "倒时计",
+				"bgBody": "rgba(168,46,46,1)",
+				"bgBlock": "white",
+				"bgTheme": "rgba(76,20,124,1)",
+				"bgLight": "white",
+				"colorTheme": "rgba(146,29,29,1)",
+				"colorLight": "white",
+				"colorBorder": "rgba(128,55,88,1)",
+				"colorTitle": "rgba(233,49,82,1)",
+				"style": "dddddd"
+			},
+			"style": "\n.action-wrap{\n\tpadding: 5px;\n}\n.action-wrap-sub{\n\tpadding: 0;\n}\n.action-wrap-poster{\n\tpadding: 0;\n}",
+			"widgets": [{
+				"name": "oneRowC83BBFEFE2A000011FD2C5DFF5461A9F",
+				"template": template,
+				"style": ".oneRowC83BBFEFE2A000011FD2C5DFF5461A9F{}",
+				"p": false,
+				"image": "http://imgs.aixifan.com/o_1ct5mhbf315r61rjh16b6qlo11bm2l.jpg",
+				"id": 17,
+				"type": "countDown"
+			}],
+			"list": [{
+				"is": "oneRowC83BBFEFE2A000011FD2C5DFF5461A9F",
+				type: 'countDown',
+				startDate: Date.now() + 3600 * 1000,
+				endDate: Date.now() + 3600 * 24 *1000,
+          		name: '活动',
+			}]
+		}
+	</script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				activeIndex: -1,
+				data: data,
+			},
+			methods: {
+				
+			},
+			mounted: function(){
+				
+			}
+		})
+		
+	</script>
+</body>
+</html>

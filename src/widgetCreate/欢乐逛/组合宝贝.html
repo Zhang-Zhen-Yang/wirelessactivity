@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>组合宝贝</title>
+	<style>
+		.action-wrap{
+			padding: 5px;
+		}
+		.action-wrap-sub{
+			padding: 0;
+		}
+		.action-wrap-poster{
+			padding: 0;
+		}
+	</style>
+
+	<style>
+		
+
+.group-goods-row .group-goods-item {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.group-goods-row .goods-pic {
+    width: 100%;
+}
+.group-goods-row .goods-title-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.5;
+    z-index: -1;
+}
+.group-goods-row .goods-title {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2em;
+    line-height: 2em;
+    font-size: 14px;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    overflow: hidden;
+    z-index: 1;
+	color: orange;
+}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<wireless
+			:data="data"
+			:activeIndex="activeIndex"
+		/>
+	</div>
+	
+	<!--模板数据-->
+	<script type="tempate" id="data-block" style="display:none">
+			<!--
+				
+
+				提供的数据：
+				1.data: 
+				{
+					"type": "oneRow", // 不用管
+					"is": "oneRowC83BBFEFE2A000011FD2C5DFF5461A9F",
+					"show_prev_price": true, // 是否显示原价
+					"show_title": true, // 是否显示宝贝名称
+					title: 'dddd', // 模块顶显示的标题
+					link: 'dddd',	// 模板顶部点击的链接
+					// 宝贝列表
+					"list": [{
+						"title": "矮小个子155cm女装衬衫女长袖职业修身上衣韩版气质格子拼接",
+						"pic_url": "https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEXq4lRzxZzC-105227988.jpg",
+						"price": "109.00",
+						"prev_price": "109.00",
+						"num_iid": 578026982963,
+						"num": 0
+					}, {
+						"title": "职业装韩版上衣秋装2018衬衫女长袖气质工作服女上班衣服女装",
+						"pic_url": "https://img.alicdn.com/bao/uploaded/i2/105227988/O1CN0128sYEYxPKF2oXxz-105227988.jpg",
+						"price": "91.00",
+						"prev_price": "91.00",
+						"num_iid": 577902709302,
+						"num": 0
+					}]
+				}
+			-->
+		<div  style="">
+			<widget-header :title="data.title" :link="data.link" :css="{backgroundColor: 'transparent',color: 'white'}"></widget-header>
+			<empty-layout v-if="data.list.length == 0" />
+			<table cellspacing="0" cellpadding="0" style="width: 100%;table-layout: fixed;display: inline-block;">
+				<tr v-for="item,index in [[{rowspan:2,index:0, verticalAlign: 'top',paddingRight: '5px'},{rowspan:1, index:1, verticalAlign: 'top'}], [{rowspan:1,index:2, verticalAlign: 'bottom'}]]">
+					<td v-for="i, subIndex in item"
+						:rowspan="i.rowspan"
+						:style="{width: index==0 && subIndex==0 ? '67%' : 'auto',verticalAlign: i.verticalAlign, paddingRight: i.paddingRight || 0}"
+					>
+						<goods-link  v-if="data.list[i.index]" :numIid="data.list[i.index].num_iid">
+							<div class="" v-if="data.list[i.index]" style="position:relative;">
+								<img class="" :src="data.list[i.index].pic_url" alt="" style="vertical-align:middle;width:100%;">
+								<div class="" v-if="data.show_title"
+									style="position: absolute;width:100%;left:0;bottom:0;white-space: nowrap;overflow:hidden;text-overflow:ellipsis;background-color:#d60934;color: white;line-height:2em;padding-left:5px;"
+								>
+									<span>{{ data.list[i.index].title }}</span>
+								</div>
+							</div>
+						</goods-link>
+					</td>
+				</tr>
+			</table>
+	  	</div>
+
+	</script>
+
+
+	<script>
+		var template = document.getElementById('data-block').innerHTML;
+		console.log(template);
+		document.getElementById('data-block').innerHTML = '';
+	</script>
+
+	<script src="http://cdn.staticfile.org/vue/2.5.17/vue.js"></script>
+	<script src="http://localhost:8080/dist/widget.js"></script>
+	<!--<script src="./widget.js"></script>-->
+	<script>
+		var data = {
+			"global": {
+				"title": "组合宝贝",
+				"bgBody": "rgba(168,46,46,1)",
+				"bgBlock": "white",
+				"bgTheme": "rgba(76,20,124,1)",
+				"bgLight": "white",
+				"colorTheme": "rgba(146,29,29,1)",
+				"colorLight": "white",
+				"colorBorder": "rgba(128,55,88,1)",
+				"colorTitle": "rgba(233,49,82,1)",
+				"style": "dddddd"
+			},
+			"style": "",
+			"widgets": [{
+				"name": "oneRowC83BBFEFE2A000011FD2C5DFF5461A9F",
+				"template": template,
+				"style": ".oneRowC83BBFEFE2A000011FD2C5DFF5461A9F{}",
+				"p": false,
+				"image": "http://imgs.aixifan.com/o_1ct5mhbf315r61rjh16b6qlo11bm2l.jpg",
+				"id": 17,
+				"type": "oneRow"
+			}],
+			"list": [{
+				"type": "oneRow",
+				"is": "oneRowC83BBFEFE2A000011FD2C5DFF5461A9F",
+				"show_prev_price": true,
+				"show_title": true,
+				title: 'dddd',
+				link: 'dddd',
+				"list": [{
+					"title": "矮小个子155cm女装衬衫女长袖职业修身上衣韩版气质格子拼接",
+					"pic_url": "https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEXq4lRzxZzC-105227988.jpg",
+					"price": "109.00",
+					"prev_price": "109.00",
+					"num_iid": 578026982963,
+					"num": 0
+				}, {
+					"title": "职业装韩版上衣秋装2018衬衫女长袖气质工作服女上班衣服女装",
+					"pic_url": "https://img.alicdn.com/bao/uploaded/i2/105227988/O1CN0128sYEYxPKF2oXxz-105227988.jpg",
+					"price": "91.00",
+					"prev_price": "91.00",
+					"num_iid": 577902709302,
+					"num": 0
+				}, {
+					"title": "职业装韩版上衣秋装2018衬衫女长袖气质工作服女上班衣服女装",
+					"pic_url": "https://img.alicdn.com/bao/uploaded/i2/105227988/O1CN0128sYEYxPKF2oXxz-105227988.jpg",
+					"price": "91.00",
+					"prev_price": "91.00",
+					"num_iid": 577902709302,
+					"num": 0
+				}]
+			}]
+		}
+	</script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				activeIndex: -1,
+				data: data,
+			},
+			methods: {
+				
+			},
+			mounted: function(){
+				
+			}
+		})
+		
+	</script>
+</body>
+</html>

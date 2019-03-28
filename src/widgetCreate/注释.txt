@@ -1,0 +1,103 @@
+可用的组件
+
+1.<goods-link :numIid="1235555"></goods-link>
+宝贝链接, 点击时会跳转到宝贝详情
+属性 numIid 宝贝的num_iid
+
+2.<empty-layout v-if="data.list.length == 0"></empty-layout>
+一个内容为空的占位符，当宝贝列表长度为空时，应显示
+
+3.<a-link :href="ddddd"><a-link>
+链接，本质上是a 链接，只是在编辑时，点击不会跳转
+属性 href 链接
+
+4.<aspect :ratio="0.5"></aspect>
+保持宽高比的组件，
+属性： ratio , 默认为1; 0.5 表示高度为宽度的0.5
+
+5.<widget-header :title="data.title" :link="data.link"></widget-header>
+模块头部， 也可以自己写
+
+6.<v-center></v-center>
+属性 css Object; type 给其添加 v-type 类
+
+
+
+
+data: {
+	"type": "oneRow",
+	"is": "oneRowC83BBFEFE2A000011FD2C5DFF5461A9F",
+	"show_prev_price": true,
+	"show_title": true,
+	title: 'gfgghghgh',
+	link: 'https://www.bilibili.com/',
+	"list": [{
+		"title": "矮小个子155cm女装衬衫女长袖职业修身上衣韩版气质格子拼接",
+		"pic_url": "https://img.alicdn.com/bao/uploaded/i1/105227988/O1CN0128sYEXq4lRzxZzC-105227988.jpg",
+		"price": "109.00",
+		"prev_price": "109.00",
+		"num_iid": 578026982963,
+		"num": 0
+	}, {
+		"title": "职业装韩版上衣秋装2018衬衫女长袖气质工作服女上班衣服女装",
+		"pic_url": "https://img.alicdn.com/bao/uploaded/i2/105227988/O1CN0128sYEYxPKF2oXxz-105227988.jpg",
+		"price": "91.00",
+		"prev_price": "91.00",
+		"num_iid": 577902709302,
+		"num": 0
+	}]
+}
+
+
+指令
+
+1.v-if: 是否显示该元素
+
+
+如:
+
+<div v-if="data.show_title">
+	apple
+</div>
+
+
+
+2v-for: 根据数组循环
+
+如：
+<ul>
+	<li v-for="item,index in data.list">
+		{{index}} {{ item.title }}
+	</li>
+</ul>
+
+显示:
+
+<ul>
+	<li>
+		1矮小个子155cm女装衬衫女长袖职业修身上衣韩版气质格子拼接
+	</li>
+	<li>
+		2职业装韩版上衣秋装2018衬衫女长袖气质工作服女上班衣服女装
+	</li>
+</ul>
+
+3. :attr atrr 为属性名 如src title 等
+
+如：
+<a :href="data.link">
+
+显示：
+<a href="gfgghghgh">
+
+
+
+
+
+参考:
+https://vue.docschina.org/v2/guide/syntax.html#参数-Arguments
+
+https://vue.docschina.org/v2/guide/list.html
+
+
+
