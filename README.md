@@ -67,5 +67,3 @@ console.log(JSON.parse(JSON.stringify(window.project.$store.state)))
 
 
 
-// 美工通过海洋进入管理员身份的链接
-https://2015.wonbao.net/marketing/wirelessnew/activitypage/designWirelessPage?admin=true&administrator=true&templateId=1045
