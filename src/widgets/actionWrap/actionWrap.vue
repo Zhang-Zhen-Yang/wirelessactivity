@@ -2,7 +2,7 @@
  * @Author: zhangzhenyang 
  * @Date: 2018-10-31 15:35:14 
  * @Last Modified by: zhangzhenyang
- * @Last Modified time: 2018-11-01 15:02:33
+ * @Last Modified time: 2019-04-11 14:52:24
  */
 // action-wrap
 <template>
@@ -69,7 +69,7 @@ export default {
     },
     maskHeight: {
       type: String,
-      default: '50%',
+      default: '45%',
     },
     sub: {
       type: Boolean,

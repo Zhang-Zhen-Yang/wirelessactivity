@@ -130,6 +130,7 @@ const store = {
 					reqOpts = {...opts,
 						demoJSON: '{}',
 						page_title: result.global.title,
+						pageTitle:  result.global.title,
 						code: JSON.stringify(result),
 						domeImageWeiTao: opts.domeImageWeiTao,
 						domeImageJiaoDian: opts.domeImageJiaoDian,
@@ -356,10 +357,6 @@ const store = {
 				}
 						
 			};
-
-
-
-
 			
 		}
 	}

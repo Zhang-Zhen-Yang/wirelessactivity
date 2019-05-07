@@ -2,7 +2,7 @@
  * @Author: zhangzhenyang 
  * @Date: 2018-10-31 15:38:20 
  * @Last Modified by: zhangzhenyang
- * @Last Modified time: 2019-01-05 09:29:52
+ * @Last Modified time: 2019-04-11 14:49:12
  */
 // wireless
 <template>
@@ -22,7 +22,7 @@
         :index="index"
         :activeIndex="activeIndex"
         :count="data.list.length"
-        :maskHeight="item.type == 'tab'? '30%' : '50%' "
+        :maskHeight="item.type == 'tab'? '30%' : '45%' "
         :type="item.type"
         @setActiveIndex="setActiveIndex"
         @setAction="setAction"

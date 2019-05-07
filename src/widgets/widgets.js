@@ -40,7 +40,7 @@ import pageBottom from './pageBottom/pageBottom';
 
 import wireless from './wireless/wireless';
 
-console.log('2019-01-15 17:19:50');
+console.log('widdget 2019-01-15 17:19:50');
 
 const options = {
     filter,

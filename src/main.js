@@ -29,4 +29,4 @@ window.project = new Vue({
   store,
   render: h => h(App)
 })
-console.log('2019-03-18 10:43:09');
+console.log('main 2019-04-29 11:36:00');

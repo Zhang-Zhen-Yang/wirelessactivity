@@ -4,7 +4,7 @@ const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = {
   entry: {
-    build: './src/main.js',
+    'wireless.build': './src/main.js',
     widget: './src/widgets/widgets.js',
   },
   output: {

@@ -5,7 +5,7 @@ let template = `
 	<div class="hot-item" v-for="item,index in data.list" :key="index" style="border: 1px solid #d60934">
 		<goods-link :numIid="item.num_iid">
 			<!--宝贝图片-->
-			<img :src="item.pic_url" alt="" style="width:100%;vertical-align: middle;">
+			<img  v-if="item.pic_url" :src="item.pic_url" alt="" style="width:100%;vertical-align: middle;">
 			<empty-layout v-if="!item.pic_url"></empty-layout>
 			<table cellspacing="0" cellpadding="0" style="width:100%;table-layout:fixed;">
 				<tr>

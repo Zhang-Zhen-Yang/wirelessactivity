@@ -13,6 +13,11 @@
           <td class="monaco-title">
             {{ item ? '组件' : '全局样式' }}
           </td>
+          <td v-if="!item" style="text-align:right;">
+             <button class="btn primary btn-save-widget" @click="preview">
+              预览
+            </button>
+          </td>
           <td class="font12" v-if="item">
             <span :class="['pointer', itemIndex == 0 ? 'active-widget-part' : 'inactive-widget-part' ]" @click="setItemIndex(0)">
               &nbsp;
@@ -41,6 +46,9 @@
             <toggle :toggleVal="item.p" @toggle="(r)=>{ item.p = r; }"></toggle>
           </td>
           <td class="right" v-if="item">
+            <button class="btn primary btn-save-widget" @click="preview">
+              预览
+            </button>
             <button class="btn primary btn-save-widget" @click="save">
               保存
             </button>
@@ -129,6 +137,13 @@ export default {
         }
       }
       // console.log(e);
+    },
+    preview() {
+      this.kd({
+        which: 83,
+        ctrlKey: true,
+        preventDefault: ()=>{}
+      });
     },
     // 保存
     save() {
